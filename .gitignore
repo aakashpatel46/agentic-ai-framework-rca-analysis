@@ -51,3 +51,7 @@ agent3/output/
 agent4/output/
 agent5/output/
 framework/output/
+
+# Local documentation corpus / large docs data
+Helpers/files/knowlede_source/
+RCA_Agentic_Framework.pptx
