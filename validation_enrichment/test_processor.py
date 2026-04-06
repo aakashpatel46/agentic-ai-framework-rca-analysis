@@ -1,13 +1,13 @@
-from __future__ import annotations
+﻿from __future__ import annotations
 
 import unittest
 from datetime import datetime, timezone
 
-from agent2.category_prompt_config import CategoryPromptConfig
-from agent2.models import AttachmentMeta, RawTicket
-from agent2.processor import ValidationEnrichmentProcessor
-from agent2.rules import RuleSet
-from agent2.source import TicketSource
+from validation_enrichment.category_prompt_config import CategoryPromptConfig
+from validation_enrichment.models import AttachmentMeta, RawTicket
+from validation_enrichment.processor import ValidationEnrichmentProcessor
+from validation_enrichment.rules import RuleSet
+from validation_enrichment.source import TicketSource
 
 
 class FakeSource(TicketSource):
@@ -97,7 +97,7 @@ class ProcessorTests(unittest.TestCase):
             prompt_config=_prompt_config(),
         )
 
-        result = processor.process_issue(issue_key="ABC-1", attachment_root="agent2/attachments/ABC-1")
+        result = processor.process_issue(issue_key="ABC-1", attachment_root="validation_enrichment/attachments/ABC-1")
 
         self.assertEqual(result.category, "bug")
         self.assertIn("summary", result.available_information)
@@ -126,7 +126,7 @@ class ProcessorTests(unittest.TestCase):
             prompt_config=_prompt_config(),
         )
 
-        result = processor.process_issue(issue_key="ABC-2", attachment_root="agent2/attachments/ABC-2")
+        result = processor.process_issue(issue_key="ABC-2", attachment_root="validation_enrichment/attachments/ABC-2")
 
         self.assertIn("reproduction steps", result.available_information)
         self.assertEqual(result.missing_information, [])
@@ -146,7 +146,7 @@ class ProcessorTests(unittest.TestCase):
             prompt_config=_prompt_config(),
         )
 
-        result = processor.process_issue(issue_key="ABC-3", attachment_root="agent2/attachments/ABC-3")
+        result = processor.process_issue(issue_key="ABC-3", attachment_root="validation_enrichment/attachments/ABC-3")
 
         self.assertIn("logs", result.available_information)
         self.assertEqual(result.missing_information, [])
@@ -165,7 +165,7 @@ class ProcessorTests(unittest.TestCase):
             prompt_config=_prompt_config(),
         )
 
-        result = processor.process_issue(issue_key="ABC-4", attachment_root="agent2/attachments/ABC-4")
+        result = processor.process_issue(issue_key="ABC-4", attachment_root="validation_enrichment/attachments/ABC-4")
 
         self.assertIn("reproduction steps", result.available_information)
         self.assertEqual(result.missing_information, [])
@@ -184,7 +184,7 @@ class ProcessorTests(unittest.TestCase):
             prompt_config=_prompt_config(),
         )
 
-        result = processor.process_issue(issue_key="ABC-5", attachment_root="agent2/attachments/ABC-5")
+        result = processor.process_issue(issue_key="ABC-5", attachment_root="validation_enrichment/attachments/ABC-5")
 
         self.assertIn("version", result.available_information)
         self.assertEqual(result.missing_information, [])
@@ -192,3 +192,4 @@ class ProcessorTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+

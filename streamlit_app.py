@@ -11,16 +11,16 @@ from typing import Any
 import streamlit as st
 from openai import OpenAI
 
-from agent1.jira_source import JiraSource
-from agent2.category_prompt_config import CategoryPromptConfig
-from agent2.env_loader import load_env_file
-from agent2.jira_source import JiraTicketSource
-from agent2.openai_categorizer import OpenAICategorizer
-from agent2.processor import ValidationEnrichmentProcessor
-from agent2.rules import RuleSet
-from agent3.agent3 import Agent3Analyzer
-from agent4.agent4 import Agent4RcaSynthesizer
-from agent5.agent5 import Agent5RiskAnalyzer
+from ticket_ingestion.jira_source import JiraSource
+from validation_enrichment.category_prompt_config import CategoryPromptConfig
+from validation_enrichment.env_loader import load_env_file
+from validation_enrichment.jira_source import JiraTicketSource
+from validation_enrichment.openai_categorizer import OpenAICategorizer
+from validation_enrichment.processor import ValidationEnrichmentProcessor
+from validation_enrichment.rules import RuleSet
+from multi_source_analysis.agent3 import Agent3Analyzer
+from rca_synthesis.agent4 import Agent4RcaSynthesizer
+from risk_reporting.agent5 import Agent5RiskAnalyzer
 
 
 def _env_or_default(key: str, default: str) -> str:
@@ -126,11 +126,11 @@ def _token_totals() -> dict[str, int]:
 def _discover_previous_issue_keys() -> list[str]:
     candidates = [
         Path("framework/output"),
-        Path("agent5/output"),
-        Path("agent4/output"),
-        Path("agent3/output"),
-        Path("agent2/output"),
-        Path("agent1/output"),
+        Path("risk_reporting/output"),
+        Path("rca_synthesis/output"),
+        Path("multi_source_analysis/output"),
+        Path("validation_enrichment/output"),
+        Path("ticket_ingestion/output"),
     ]
     keys: set[str] = set()
     for base in candidates:
@@ -274,8 +274,10 @@ def _map_agent2_to_agent3_ticket(agent2_output: dict[str, Any]) -> dict[str, Any
 
 def run_agent2(issue_key: str) -> tuple[dict[str, Any], Path, dict[str, Any]]:
     source = JiraTicketSource.from_env()
-    rules = RuleSet.from_file(_env_or_default("AGENT2_RULES_FILE", "agent2/rules.json"))
-    prompt_config = CategoryPromptConfig.from_file(_env_or_default("AGENT2_PROMPTS_FILE", "agent2/category_prompts.txt"))
+    rules = RuleSet.from_file(_env_or_default("AGENT2_RULES_FILE", "validation_enrichment/rules.json"))
+    prompt_config = CategoryPromptConfig.from_file(
+        _env_or_default("AGENT2_PROMPTS_FILE", "validation_enrichment/category_prompts.txt")
+    )
     categorizer = OpenAICategorizer(rules)
     processor = ValidationEnrichmentProcessor(
         source=source,
@@ -284,7 +286,7 @@ def run_agent2(issue_key: str) -> tuple[dict[str, Any], Path, dict[str, Any]]:
         prompt_config=prompt_config,
     )
 
-    attachment_root = _env_or_default("AGENT2_ATTACHMENT_ROOT", f"agent2/attachments/{issue_key}")
+    attachment_root = _env_or_default("AGENT2_ATTACHMENT_ROOT", f"validation_enrichment/attachments/{issue_key}")
     result = processor.process_issue(issue_key=issue_key, attachment_root=attachment_root)
     attachment_paths = [str(Path(path).resolve()) for path in result.attachment_paths]
     stats = getattr(source, "last_attachment_stats", {}) if source is not None else {}
@@ -325,7 +327,7 @@ def run_agent2(issue_key: str) -> tuple[dict[str, Any], Path, dict[str, Any]]:
     }
     payload["token_usage"] = token_usage
 
-    output_path = Path(_env_or_default("AGENT2_OUTPUT_FILE", f"agent2/output/{issue_key}.json"))
+    output_path = Path(_env_or_default("AGENT2_OUTPUT_FILE", f"validation_enrichment/output/{issue_key}.json"))
     _write_json(output_path, payload)
     return payload, output_path, token_usage
 
@@ -344,7 +346,7 @@ def run_agent1(issue_key_hint: str = "") -> tuple[dict[str, Any], Path]:
         "issue_key": selected_event.ticket_key,
         "summary": selected_event.summary,
     }
-    output_path = Path(f"agent1/output/{_safe_issue_key(selected_event.ticket_key)}.json")
+    output_path = Path(f"ticket_ingestion/output/{_safe_issue_key(selected_event.ticket_key)}.json")
     _write_json(output_path, payload)
     return payload, output_path
 
@@ -362,7 +364,7 @@ def run_agent3(ticket_payload: dict[str, Any]) -> tuple[dict[str, Any], Path]:
     )
     analyzer = Agent3Analyzer.from_env()
     result = analyzer.analyze_ticket(ticket_payload)
-    output_path = Path(f"agent3/output/{issue_key}.json")
+    output_path = Path(f"multi_source_analysis/output/{issue_key}.json")
     _write_json(output_path, result)
     return result, output_path
 
@@ -387,7 +389,7 @@ def run_agent4(ticket_payload: dict[str, Any], agent3_output: dict[str, Any]) ->
         },
         "detailed_rca_and_fix": detailed,
     }
-    output_path = Path(f"agent4/output/{issue_key}.json")
+    output_path = Path(f"rca_synthesis/output/{issue_key}.json")
     _write_json(output_path, result)
     return result, output_path
 
@@ -408,7 +410,7 @@ def run_agent5(agent4_output: dict[str, Any]) -> tuple[dict[str, Any], Path]:
         },
         "detailed_risk_analysis": detailed,
     }
-    output_path = Path(f"agent5/output/{issue_key}.json")
+    output_path = Path(f"risk_reporting/output/{issue_key}.json")
     _write_json(output_path, result)
     return result, output_path
 
@@ -442,11 +444,11 @@ def _ensure_state() -> None:
 def _load_existing_outputs(issue_key: str, force: bool = False) -> None:
     safe_key = _safe_issue_key(issue_key)
     candidates = {
-        "agent1_output": Path(f"agent1/output/{safe_key}.json"),
-        "agent2_output": Path(f"agent2/output/{safe_key}.json"),
-        "agent3_output": Path(f"agent3/output/{safe_key}.json"),
-        "agent4_output": Path(f"agent4/output/{safe_key}.json"),
-        "agent5_output": Path(f"agent5/output/{safe_key}.json"),
+        "agent1_output": Path(f"ticket_ingestion/output/{safe_key}.json"),
+        "agent2_output": Path(f"validation_enrichment/output/{safe_key}.json"),
+        "agent3_output": Path(f"multi_source_analysis/output/{safe_key}.json"),
+        "agent4_output": Path(f"rca_synthesis/output/{safe_key}.json"),
+        "agent5_output": Path(f"risk_reporting/output/{safe_key}.json"),
     }
     for key, path in candidates.items():
         if not force and st.session_state.get(key) is not None:
@@ -470,7 +472,7 @@ def _load_existing_outputs(issue_key: str, force: bool = False) -> None:
 
 def _load_agent1_output_for_issue(issue_key: str) -> dict[str, Any] | None:
     safe_key = _safe_issue_key(issue_key)
-    path = Path(f"agent1/output/{safe_key}.json")
+    path = Path(f"ticket_ingestion/output/{safe_key}.json")
     value = _read_json_if_exists(path)
     if isinstance(value, dict):
         return value
@@ -556,6 +558,114 @@ def _format_size_bytes(size_value: Any) -> str:
     return f"{size / (1024 * 1024):.2f} MB"
 
 
+def _extract_first_timestamp(text: str) -> str:
+    value = (text or "").strip()
+    if not value:
+        return ""
+    patterns = [
+        r"\b\d{4}-\d{2}-\d{2}[ T]\d{2}:\d{2}:\d{2}(?:[.,]\d+)?\b",
+        r"\b\d{2}/[A-Za-z]{3}/\d{2}\s+\d{1,2}:\d{2}\s*[AP]M\b",
+    ]
+    for pattern in patterns:
+        m = re.search(pattern, value)
+        if m:
+            return m.group(0)
+    return ""
+
+
+def _keywords(text: str) -> set[str]:
+    words = re.findall(r"[a-zA-Z0-9_]+", (text or "").lower())
+    stop = {"the", "and", "for", "with", "that", "this", "from", "have", "has", "was", "are", "not"}
+    return {w for w in words if len(w) > 3 and w not in stop}
+
+
+def _similarity_reason(current_summary: str, current_desc: str, row: dict[str, Any]) -> str:
+    sim_summary = str(row.get("summary", "")).strip()
+    sim_desc = str(row.get("description", "")).strip()
+    sim_score = row.get("score", None)
+    overlap = sorted(list((_keywords(current_summary + " " + current_desc)) & (_keywords(sim_summary + " " + sim_desc))))[:4]
+    reasons: list[str] = []
+    if sim_score is not None:
+        reasons.append(f"vector score {sim_score}")
+    if overlap:
+        reasons.append(f"shared context: {', '.join(overlap)}")
+    ai_summary = str(row.get("ai_summary", "")).strip()
+    if ai_summary:
+        reasons.append(_short_text(ai_summary, 120))
+    return "; ".join(reasons) if reasons else "Similar problem pattern in historical analysis."
+
+
+def _non_technical_summary(issue_summary: str, rca_summary: str, root_cause: str) -> str:
+    s1 = _short_text(_clean_jira_text(issue_summary), 220)
+    s2 = _short_text(_clean_jira_text(rca_summary), 280)
+    s3 = _short_text(_clean_jira_text(root_cause), 280)
+    lines = []
+    if s1:
+        lines.append(f"The issue is about: {s1}")
+    if s2:
+        lines.append(f"What happened: {s2}")
+    if s3:
+        lines.append(f"Why it happened: {s3}")
+    return "\n".join(lines[:3]) or "Summary unavailable."
+
+
+def _attachment_findings(agent3_output: dict[str, Any]) -> list[dict[str, str]]:
+    findings: list[dict[str, str]] = []
+    groups = [
+        ("log", agent3_output.get("logs", [])),
+        ("yml", agent3_output.get("yml_files", [])),
+        ("other", agent3_output.get("other_attachments", [])),
+    ]
+    for group_type, items in groups:
+        if not isinstance(items, list):
+            continue
+        for item in items:
+            if not isinstance(item, dict):
+                continue
+            path_value = str(item.get("path", "")).strip()
+            name = _safe_name_from_path(path_value) or "attachment"
+            excerpt = str(item.get("excerpt", "")).strip()
+            note = str(item.get("note", "")).strip()
+            ts = _extract_first_timestamp(excerpt)
+            if group_type == "log":
+                one_line = f"{name}: log evidence detected"
+                if ts:
+                    one_line += f" at {ts}"
+                if excerpt:
+                    one_line += f"; {_short_text(excerpt, 120)}"
+            elif group_type == "yml":
+                one_line = f"{name}: config evidence found; {_short_text(excerpt or note, 120)}"
+            else:
+                image_analysis = item.get("image_analysis", {}) if isinstance(item, dict) else {}
+                if isinstance(image_analysis, dict) and str(image_analysis.get("summary", "")).strip():
+                    summary = str(image_analysis.get("summary", "")).strip()
+                    extracted = str(image_analysis.get("extracted_text", "")).strip()
+                    image_ts = image_analysis.get("timestamps", [])
+                    ts_value = ""
+                    if isinstance(image_ts, list) and image_ts:
+                        ts_value = str(image_ts[0]).strip()
+                    if ts_value:
+                        one_line = f"{name}: {summary} (timestamp: {ts_value})"
+                    else:
+                        one_line = f"{name}: {summary}"
+                    if extracted:
+                        excerpt = extracted
+                        if not ts:
+                            ts = _extract_first_timestamp(extracted)
+                else:
+                    one_line = f"{name}: {_short_text(note or 'Attachment inspected for metadata/context.', 120)}"
+            findings.append(
+                {
+                    "title": one_line,
+                    "path": path_value,
+                    "excerpt": excerpt,
+                    "timestamp": ts,
+                    "type": group_type,
+                }
+            )
+    return findings
+
+
 def _render_agent3_attachment_group(title: str, items: list[dict[str, Any]]) -> None:
     st.markdown(_colored_label(title), unsafe_allow_html=True)
     if not items:
@@ -585,13 +695,89 @@ def _render_agent3_attachment_group(title: str, items: list[dict[str, Any]]) -> 
                 st.code(excerpt)
 
 
-def _render_final_output_pretty(payload: dict[str, Any]) -> None:
+def _render_final_output_pretty(
+    payload: dict[str, Any],
+    agent2_output: dict[str, Any] | None = None,
+    agent3_output: dict[str, Any] | None = None,
+) -> None:
     rca = payload.get("root_cause_analysis", {}) if isinstance(payload, dict) else {}
     risk = payload.get("risk_analysis", {}) if isinstance(payload, dict) else {}
     issue_key = str(payload.get("issue_key", "")).strip()
+    issue_summary = ""
+    issue_description = ""
+    missing_info: list[Any] = []
+    if isinstance(agent2_output, dict):
+        issue_summary = str(agent2_output.get("Summary", "")).strip()
+        issue_description = str(agent2_output.get("Description", "")).strip()
+        if isinstance(agent2_output.get("Missing Information", []), list):
+            missing_info = agent2_output.get("Missing Information", [])
+        elif isinstance(agent2_output.get("missing_information", []), list):
+            missing_info = agent2_output.get("missing_information", [])
 
     if issue_key:
-        st.markdown(f"{_colored_label('Ticket:')} <code>{issue_key}</code>", unsafe_allow_html=True)
+        st.markdown(f"{_colored_label('Issue Key:')} <code>{issue_key}</code>", unsafe_allow_html=True)
+
+    summary_block = _non_technical_summary(
+        issue_summary,
+        str(rca.get("executive_summary", "N/A")),
+        str(rca.get("root_cause_analysis", "N/A")),
+    )
+    st.markdown(_colored_label("Summary"), unsafe_allow_html=True)
+    st.write(summary_block)
+
+    st.markdown(_colored_label("Missing Information"), unsafe_allow_html=True)
+    if missing_info:
+        for item in missing_info:
+            st.markdown(f"- {item}")
+    else:
+        st.write("None")
+
+    if isinstance(agent3_output, dict):
+        current_desc = issue_description or issue_summary
+        similar = agent3_output.get("similar_tickets_top3", []) or agent3_output.get("similar_tickets", [])
+        st.markdown(_colored_label("Similar Tickets"), unsafe_allow_html=True)
+        if isinstance(similar, list) and similar:
+            for idx, row in enumerate(similar, start=1):
+                if not isinstance(row, dict):
+                    continue
+                sim_key = str(row.get("issue_key", f"TICKET-{idx}")).strip()
+                reason = _similarity_reason(issue_summary, current_desc, row)
+                st.markdown(f"**{sim_key}:** {reason}")
+                with st.expander(f"{sim_key} Raw Information + Comments", expanded=False):
+                    st.write(f"Summary: {row.get('summary', 'N/A')}")
+                    st.write(f"Description: {row.get('description', 'N/A')}")
+                    st.write(f"AI Summary: {row.get('ai_summary', 'N/A')}")
+                    st.write(f"Score: {row.get('score', 'N/A')}")
+                    st.write(f"Organizations: {row.get('organizations', 'N/A')}")
+                    st.write(f"Updated: {row.get('updated', 'N/A')}")
+                    comments = row.get("comments", [])
+                    if isinstance(comments, list) and comments:
+                        st.markdown("Comments")
+                        for c in comments[:8]:
+                            st.markdown(f"- {_format_comment_for_display(str(c))}")
+                    elif isinstance(comments, str) and comments.strip():
+                        st.markdown("Comments")
+                        st.markdown(f"- {_format_comment_for_display(comments)}")
+                    else:
+                        st.write("Comments: Not available in indexed metadata.")
+        else:
+            st.write("No similar-ticket context available.")
+
+        st.markdown(_colored_label("Attachment Analysis"), unsafe_allow_html=True)
+        findings = _attachment_findings(agent3_output)
+        if findings:
+            for i, finding in enumerate(findings, start=1):
+                st.markdown(f"- {finding['title']}")
+                with st.expander(f"Attachment Evidence {i}", expanded=False):
+                    if finding.get("path"):
+                        st.caption(f"Path: `{finding['path']}`")
+                    if finding.get("timestamp"):
+                        st.write(f"Timestamp: {finding['timestamp']}")
+                    if finding.get("excerpt"):
+                        st.markdown("Evidence")
+                        st.code(str(finding["excerpt"]))
+        else:
+            st.write("No analyzable attachment evidence found.")
 
     c1, c2, c3 = st.columns(3)
     c1.metric("Recommended Fix", str(rca.get("recommended_fix_path", "N/A")))
@@ -1039,7 +1225,7 @@ def main() -> None:
                 if isinstance(from_file, dict):
                     st.session_state["agent1_output"] = from_file
                     st.session_state["agent1_output_path"] = str(
-                        Path(f"agent1/output/{_safe_issue_key(issue_key)}.json").resolve()
+                        Path(f"ticket_ingestion/output/{_safe_issue_key(issue_key)}.json").resolve()
                     )
                     agent1_output = from_file
                     _append_log(f"Loaded Agent1 output from file for {issue_key}")
@@ -1117,7 +1303,11 @@ def main() -> None:
                 mime="application/json",
                 key="dl_final_output",
             )
-            _render_final_output_pretty(final_output)
+            _render_final_output_pretty(
+                final_output,
+                st.session_state.get("agent2_output"),
+                st.session_state.get("agent3_output"),
+            )
 
     st.subheader("Clarifications")
     if final_output is None:
@@ -1162,31 +1352,31 @@ def main() -> None:
 
     st.subheader("Agent Outputs")
     _render_output_block(
-        "Agent1 Output",
+        "Ticket Ingestion Output",
         st.session_state.get("agent1_output"),
         st.session_state.get("agent1_output_path", ""),
         "agent1_output",
     )
     _render_output_block(
-        "Agent2 Output",
+        "Validation & Enrichment Output",
         st.session_state.get("agent2_output"),
         st.session_state.get("agent2_output_path", ""),
         "agent2_output",
     )
     _render_output_block(
-        "Agent3 Output",
+        "Multi-Source Analysis Output",
         st.session_state.get("agent3_output"),
         st.session_state.get("agent3_output_path", ""),
         "agent3_output",
     )
     _render_output_block(
-        "Agent4 Output",
+        "RCA Synthesis Output",
         st.session_state.get("agent4_output"),
         st.session_state.get("agent4_output_path", ""),
         "agent4_output",
     )
     _render_output_block(
-        "Agent5 Output",
+        "Risk & Reporting Output",
         st.session_state.get("agent5_output"),
         st.session_state.get("agent5_output_path", ""),
         "agent5_output",

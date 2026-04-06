@@ -1,14 +1,14 @@
-from __future__ import annotations
+﻿from __future__ import annotations
 
 from dataclasses import asdict
 from pathlib import Path
 import re
 
-from agent2.category_prompt_config import CategoryPromptConfig
-from agent2.models import RawTicket, ValidationEnrichmentResult
-from agent2.openai_categorizer import OpenAICategorizer
-from agent2.rules import RuleSet
-from agent2.source import TicketSource
+from validation_enrichment.category_prompt_config import CategoryPromptConfig
+from validation_enrichment.models import RawTicket, ValidationEnrichmentResult
+from validation_enrichment.openai_categorizer import OpenAICategorizer
+from validation_enrichment.rules import RuleSet
+from validation_enrichment.source import TicketSource
 
 
 class ValidationEnrichmentProcessor:
@@ -242,3 +242,4 @@ class ValidationEnrichmentProcessor:
             if content:
                 chunks.append(content[:max_chars_per_file])
         return "\n".join(chunks)
+

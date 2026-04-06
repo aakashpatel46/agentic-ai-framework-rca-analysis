@@ -1,11 +1,11 @@
-from __future__ import annotations
+﻿from __future__ import annotations
 
 import argparse
 import os
 
 from jira import JIRA
 
-from agent2.env_loader import load_env_file
+from validation_enrichment.env_loader import load_env_file
 
 
 def _get_env(name: str) -> str:
@@ -62,3 +62,4 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
+

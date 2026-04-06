@@ -1,13 +1,13 @@
-from __future__ import annotations
+﻿from __future__ import annotations
 
 import unittest
 from datetime import datetime, timezone
 from pathlib import Path
 from tempfile import TemporaryDirectory
 
-from agent1.event_listener import CheckpointStore, EventListener
-from agent1.models import TicketCreatedEvent
-from agent1.source import EventSource
+from ticket_ingestion.event_listener import CheckpointStore, EventListener
+from ticket_ingestion.models import TicketCreatedEvent
+from ticket_ingestion.source import EventSource
 
 
 class FakeSource(EventSource):
@@ -86,3 +86,4 @@ class EventListenerTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+

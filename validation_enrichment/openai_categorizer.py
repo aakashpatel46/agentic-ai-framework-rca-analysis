@@ -1,4 +1,4 @@
-from __future__ import annotations
+﻿from __future__ import annotations
 
 import json
 import os
@@ -6,8 +6,8 @@ from typing import Any
 
 import requests
 
-from agent2.models import RawTicket
-from agent2.rules import RuleSet
+from validation_enrichment.models import RawTicket
+from validation_enrichment.rules import RuleSet
 
 
 class OpenAICategorizer:
@@ -257,3 +257,4 @@ class OpenAICategorizer:
         if "feature" in text or "enhancement" in text or "request" in text:
             return "feature_request"
         return "other"
+

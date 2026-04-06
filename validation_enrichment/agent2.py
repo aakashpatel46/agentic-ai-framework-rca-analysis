@@ -1,16 +1,16 @@
-from __future__ import annotations
+﻿from __future__ import annotations
 
 import argparse
 import json
 import os
 from pathlib import Path
 
-from agent2.category_prompt_config import CategoryPromptConfig
-from agent2.env_loader import load_env_file
-from agent2.jira_source import JiraTicketSource
-from agent2.openai_categorizer import OpenAICategorizer
-from agent2.processor import ValidationEnrichmentProcessor
-from agent2.rules import RuleSet
+from validation_enrichment.category_prompt_config import CategoryPromptConfig
+from validation_enrichment.env_loader import load_env_file
+from validation_enrichment.jira_source import JiraTicketSource
+from validation_enrichment.openai_categorizer import OpenAICategorizer
+from validation_enrichment.processor import ValidationEnrichmentProcessor
+from validation_enrichment.rules import RuleSet
 
 
 def _env_or_default(key: str, default: str) -> str:
@@ -39,9 +39,9 @@ def main() -> None:
         raise ValueError("Issue key is required. Provide --issue-key or AGENT2_INPUT_ISSUE_KEY in .env")
 
     source = _build_source_from_env()
-    rules = RuleSet.from_file(_env_or_default("AGENT2_RULES_FILE", "agent2/rules.json"))
+    rules = RuleSet.from_file(_env_or_default("AGENT2_RULES_FILE", "validation_enrichment/rules.json"))
     prompt_config = CategoryPromptConfig.from_file(
-        _env_or_default("AGENT2_PROMPTS_FILE", "agent2/category_prompts.txt")
+        _env_or_default("AGENT2_PROMPTS_FILE", "validation_enrichment/category_prompts.txt")
     )
     categorizer = OpenAICategorizer(rules)
     processor = ValidationEnrichmentProcessor(
@@ -51,10 +51,10 @@ def main() -> None:
         prompt_config=prompt_config,
     )
 
-    attachment_root = _env_or_default("AGENT2_ATTACHMENT_ROOT", f"agent2/attachments/{issue_key}")
+    attachment_root = _env_or_default("AGENT2_ATTACHMENT_ROOT", f"validation_enrichment/attachments/{issue_key}")
     result = processor.process_issue(issue_key=issue_key, attachment_root=attachment_root)
 
-    output_path = Path(_env_or_default("AGENT2_OUTPUT_FILE", f"agent2/output/{issue_key}.json"))
+    output_path = Path(_env_or_default("AGENT2_OUTPUT_FILE", f"validation_enrichment/output/{issue_key}.json"))
     output_path.parent.mkdir(parents=True, exist_ok=True)
     attachment_paths = [str(Path(path).resolve()) for path in result.attachment_paths]
     stats = getattr(source, "last_attachment_stats", {}) if source is not None else {}
@@ -94,3 +94,4 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
+

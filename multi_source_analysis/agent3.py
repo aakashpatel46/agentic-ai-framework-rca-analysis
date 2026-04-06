@@ -1,8 +1,10 @@
-from __future__ import annotations
+﻿from __future__ import annotations
 
 import argparse
+import base64
 import hashlib
 import json
+import mimetypes
 import os
 import re
 from collections import Counter
@@ -603,12 +605,78 @@ class Agent3Analyzer:
         }
 
     @staticmethod
+    def _is_image_file(path: str) -> bool:
+        ext = Path(path).suffix.lower()
+        return ext in {".png", ".jpg", ".jpeg", ".webp", ".bmp", ".gif", ".tif", ".tiff"}
+
+    @staticmethod
     def _read_text_excerpt(path: Path, max_chars: int = 4000) -> str:
         try:
             content = path.read_text(encoding="utf-8", errors="ignore")
             return normalize_whitespace(content[:max_chars])
         except Exception:
             return ""
+
+    def _analyze_image_attachment(self, path: Path) -> dict[str, Any]:
+        try:
+            mime = mimetypes.guess_type(str(path))[0] or "image/png"
+            raw = path.read_bytes()
+            b64 = base64.b64encode(raw).decode("ascii")
+            image_data_url = f"data:{mime};base64,{b64}"
+            response = self.openai_client.responses.create(
+                model=self.analysis_model,
+                temperature=0.1,
+                max_output_tokens=450,
+                input=[
+                    {
+                        "role": "system",
+                        "content": (
+                            "You analyze issue-attachment images for RCA triage. Return ONLY valid JSON with keys: "
+                            "summary (string), extracted_text (string), evidence_signals (array of strings), "
+                            "timestamps (array of strings). Keep concise and factual."
+                        ),
+                    },
+                    {
+                        "role": "user",
+                        "content": [
+                            {
+                                "type": "input_text",
+                                "text": (
+                                    "Analyze this attachment image. Focus on errors, warnings, stack traces, UI messages, "
+                                    "and any timestamped evidence."
+                                ),
+                            },
+                            {"type": "input_image", "image_url": image_data_url},
+                        ],
+                    },
+                ],
+            )
+            self._record_usage("image_attachment_analysis", getattr(response, "usage", None))
+            parsed = safe_json_loads(getattr(response, "output_text", "") or "")
+            if isinstance(parsed, dict):
+                return {
+                    "summary": normalize_whitespace(str(parsed.get("summary", ""))),
+                    "extracted_text": normalize_whitespace(str(parsed.get("extracted_text", ""))),
+                    "evidence_signals": parsed.get("evidence_signals", []) if isinstance(parsed.get("evidence_signals", []), list) else [],
+                    "timestamps": parsed.get("timestamps", []) if isinstance(parsed.get("timestamps", []), list) else [],
+                    "analysis_source": "openai_vision",
+                }
+        except Exception as exc:
+            return {
+                "summary": "Image analysis failed.",
+                "extracted_text": "",
+                "evidence_signals": [],
+                "timestamps": [],
+                "analysis_source": "fallback",
+                "analysis_error": str(exc),
+            }
+        return {
+            "summary": "No meaningful evidence extracted from image.",
+            "extracted_text": "",
+            "evidence_signals": [],
+            "timestamps": [],
+            "analysis_source": "fallback",
+        }
 
     def _analyze_attachments(self, attachment_paths: list[str]) -> dict[str, Any]:
         logs: list[dict[str, Any]] = []
@@ -677,6 +745,19 @@ class Agent3Analyzer:
                     }
                 )
             else:
+                if self._is_image_file(raw_path) and exists:
+                    image_analysis = self._analyze_image_attachment(p)
+                    other_attachments.append(
+                        {
+                            **row_base,
+                            "type": "image",
+                            "image_analysis": image_analysis,
+                            "excerpt": str(image_analysis.get("extracted_text", ""))[:1200],
+                            "highlights": image_analysis.get("evidence_signals", []),
+                            "timestamps": image_analysis.get("timestamps", []),
+                        }
+                    )
+                    continue
                 other_attachments.append(
                     {
                         **row_base,
@@ -749,7 +830,7 @@ def resolve_output_path(ticket: dict[str, Any], output_file: str) -> Path:
         or "ticket"
     )
     safe_issue_key = re.sub(r"[^a-zA-Z0-9_.-]", "_", issue_key)
-    return Path(f"agent3/output/{safe_issue_key}.json")
+    return Path(f"multi_source_analysis/output/{safe_issue_key}.json")
 
 
 def main() -> None:
@@ -771,3 +852,4 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
+

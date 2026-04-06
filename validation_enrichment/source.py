@@ -1,8 +1,8 @@
-from __future__ import annotations
+﻿from __future__ import annotations
 
 from abc import ABC, abstractmethod
 
-from agent2.models import RawTicket
+from validation_enrichment.models import RawTicket
 
 
 class TicketSource(ABC):
@@ -18,3 +18,4 @@ class TicketSource(ABC):
     @abstractmethod
     def download_attachments(self, ticket: RawTicket, destination_dir: str) -> list[str]:
         raise NotImplementedError
+

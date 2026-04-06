@@ -1,14 +1,14 @@
-from __future__ import annotations
+﻿from __future__ import annotations
 
 import json
 from pathlib import Path
 
-from agent2.agent2 import _build_source_from_env
-from agent2.category_prompt_config import CategoryPromptConfig
-from agent2.env_loader import load_env_file
-from agent2.openai_categorizer import OpenAICategorizer
-from agent2.processor import ValidationEnrichmentProcessor
-from agent2.rules import RuleSet
+from validation_enrichment.agent2 import _build_source_from_env
+from validation_enrichment.category_prompt_config import CategoryPromptConfig
+from validation_enrichment.env_loader import load_env_file
+from validation_enrichment.openai_categorizer import OpenAICategorizer
+from validation_enrichment.processor import ValidationEnrichmentProcessor
+from validation_enrichment.rules import RuleSet
 
 # Hardcoded issue key for manual testing
 ISSUE_KEY = "JMCH-1802"
@@ -18,8 +18,8 @@ def main() -> None:
     load_env_file(".env")
 
     source = _build_source_from_env()
-    rules = RuleSet.from_file("agent2/rules.json")
-    prompt_config = CategoryPromptConfig.from_file("agent2/category_prompts.txt")
+    rules = RuleSet.from_file("validation_enrichment/rules.json")
+    prompt_config = CategoryPromptConfig.from_file("validation_enrichment/category_prompts.txt")
     categorizer = OpenAICategorizer(rules)
     processor = ValidationEnrichmentProcessor(
         source=source,
@@ -28,10 +28,10 @@ def main() -> None:
         prompt_config=prompt_config,
     )
 
-    attachment_root = f"agent2/attachments/{ISSUE_KEY}"
+    attachment_root = f"validation_enrichment/attachments/{ISSUE_KEY}"
     result = processor.process_issue(issue_key=ISSUE_KEY, attachment_root=attachment_root)
 
-    output_path = Path(f"agent2/output/{ISSUE_KEY}.json")
+    output_path = Path(f"validation_enrichment/output/{ISSUE_KEY}.json")
     output_path.parent.mkdir(parents=True, exist_ok=True)
     output_payload = result.to_dict()
     output_payload["attachment_paths"] = [str(Path(path).resolve()) for path in result.attachment_paths]
@@ -52,3 +52,4 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
+

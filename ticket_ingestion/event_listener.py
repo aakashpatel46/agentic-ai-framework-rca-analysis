@@ -1,4 +1,4 @@
-from __future__ import annotations
+﻿from __future__ import annotations
 
 import os
 import time
@@ -6,8 +6,8 @@ from datetime import datetime
 from pathlib import Path
 from typing import Callable
 
-from agent1.models import TicketCreatedEvent
-from agent1.source import EventSource
+from ticket_ingestion.models import TicketCreatedEvent
+from ticket_ingestion.source import EventSource
 
 
 class CheckpointStore:
@@ -69,3 +69,4 @@ class EventListener:
 def build_checkpoint_store_from_env() -> CheckpointStore:
     path = os.getenv("AGENT1_STATE_FILE", ".agent_state/agent1_checkpoint.txt")
     return CheckpointStore(path=path)
+

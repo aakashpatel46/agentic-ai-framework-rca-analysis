@@ -1,4 +1,4 @@
-from __future__ import annotations
+﻿from __future__ import annotations
 
 import os
 from dataclasses import dataclass
@@ -7,8 +7,8 @@ from datetime import datetime
 from jira import JIRA
 from jira.exceptions import JIRAError
 
-from agent1.models import TicketCreatedEvent
-from agent1.source import EventSource
+from ticket_ingestion.models import TicketCreatedEvent
+from ticket_ingestion.source import EventSource
 
 
 @dataclass(frozen=True)
@@ -155,3 +155,4 @@ class JiraSource(EventSource):
             except ValueError:
                 continue
         raise ValueError(f"Unsupported Jira created timestamp format: {value}")
+

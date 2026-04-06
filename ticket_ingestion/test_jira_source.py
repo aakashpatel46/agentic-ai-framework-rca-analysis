@@ -1,9 +1,9 @@
-from __future__ import annotations
+﻿from __future__ import annotations
 
 import unittest
 from types import SimpleNamespace
 
-from agent1.jira_source import JiraConfig, JiraSource
+from ticket_ingestion.jira_source import JiraConfig, JiraSource
 
 
 class FakeIssue:
@@ -81,3 +81,4 @@ class JiraSourceTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+

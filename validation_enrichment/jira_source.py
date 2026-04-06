@@ -1,4 +1,4 @@
-from __future__ import annotations
+﻿from __future__ import annotations
 
 import os
 from dataclasses import dataclass
@@ -7,8 +7,8 @@ from pathlib import Path
 
 from jira import JIRA
 
-from agent2.models import AttachmentMeta, RawTicket
-from agent2.source import TicketSource
+from validation_enrichment.models import AttachmentMeta, RawTicket
+from validation_enrichment.source import TicketSource
 
 
 @dataclass(frozen=True)
@@ -262,3 +262,4 @@ class JiraTicketSource(TicketSource):
             except ValueError:
                 continue
         return value
+

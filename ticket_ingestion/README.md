@@ -1,4 +1,4 @@
-# Agent1
+﻿# Agent1
 
 Agent1 is the first independent agent. It listens for newly created Jira tickets and triggers its handler for each new issue.
 
@@ -18,9 +18,10 @@ Set env vars:
 Run:
 
 ```powershell
-.\venv\Scripts\python -m agent1.agent1
+.\venv\Scripts\python -m ticket_ingestion.agent1
 ```
 
 ## Extension
 
-To add another source later, implement `EventSource` in `agent1/source.py` and wire it in `build_source_from_env()` in `agent1/agent1.py`.
+To add another source later, implement `EventSource` in `ticket_ingestion/source.py` and wire it in `build_source_from_env()` in `ticket_ingestion/agent1.py`.
+

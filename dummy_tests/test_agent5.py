@@ -1,4 +1,4 @@
-from __future__ import annotations
+﻿from __future__ import annotations
 
 import json
 import sys
@@ -8,19 +8,19 @@ PROJECT_ROOT = Path(__file__).resolve().parents[1]
 if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
 
-from agent5.agent5 import Agent5RiskAnalyzer, load_env_file
+from risk_reporting.agent5 import Agent5RiskAnalyzer, load_env_file
 
 
 def main() -> None:
     load_env_file(".env")
 
-    agent4_output_path = Path("agent4/output/JMCH-DUMMY-3001.json")
+    agent4_output_path = Path("rca_synthesis/output/JMCH-DUMMY-3001.json")
     if not agent4_output_path.exists():
         agent4_output_path = Path("dummy_tests/output/agent4_dummy_output.json")
     if not agent4_output_path.exists():
         raise FileNotFoundError(
             "Missing Agent4 output file. Run agent4 first to generate one under "
-            "'agent4/output/' or 'dummy_tests/output/'."
+            "'rca_synthesis/output/' or 'dummy_tests/output/'."
         )
 
     agent4_output = json.loads(agent4_output_path.read_text(encoding="utf-8"))
@@ -38,4 +38,5 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
+
 

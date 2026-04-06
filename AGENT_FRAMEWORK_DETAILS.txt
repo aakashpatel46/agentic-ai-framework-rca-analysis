@@ -1,4 +1,4 @@
-AGENTIC FRAMEWORK MASTER NOTES
+﻿AGENTIC FRAMEWORK MASTER NOTES
 =============================
 
 How to use this file
@@ -26,34 +26,34 @@ Implemented and tested.
 
 4. Files Created
 ----------------
-- `agent1/models.py`
-- `agent1/source.py`
-- `agent1/jira_source.py`
-- `agent1/event_listener.py`
-- `agent1/agent1.py`
-- `agent1/test_jira_source.py`
-- `agent1/test_event_listener.py`
-- `agent1/README.md`
-- `agent1/__init__.py`
+- `ticket_ingestion/models.py`
+- `ticket_ingestion/source.py`
+- `ticket_ingestion/jira_source.py`
+- `ticket_ingestion/event_listener.py`
+- `ticket_ingestion/agent1.py`
+- `ticket_ingestion/test_jira_source.py`
+- `ticket_ingestion/test_event_listener.py`
+- `ticket_ingestion/README.md`
+- `ticket_ingestion/__init__.py`
 
 4.1 File-by-File Description
 ----------------------------
-- `agent1/models.py`
+- `ticket_ingestion/models.py`
   - Defines `TicketCreatedEvent` (normalized event schema).
   - Keeps a source-neutral structure so business logic does not depend on Jira-specific objects.
 
-- `agent1/source.py`
+- `ticket_ingestion/source.py`
   - Defines abstract `EventSource` contract.
   - Any new source adapter (Jira, ServiceNow, DB, etc.) should implement this interface.
 
-- `agent1/jira_source.py`
+- `ticket_ingestion/jira_source.py`
   - Implements Jira adapter (`JiraSource`) and configuration model (`JiraConfig`).
   - Connects to Jira using `jira` library.
   - Builds JQL with project filter + optional extra filter.
   - Fetches issues, parses timestamps, maps each issue into `TicketCreatedEvent`.
   - Handles strict filtering so only events newer than checkpoint are returned.
 
-- `agent1/event_listener.py`
+- `ticket_ingestion/event_listener.py`
   - Implements `CheckpointStore` to read/write last processed timestamp.
   - Implements `EventListener` loop to:
     - fetch events from source,
@@ -61,26 +61,26 @@ Implemented and tested.
     - update checkpoint after successful processing.
   - Provides `build_checkpoint_store_from_env()` helper for configurable state file path.
 
-- `agent1/agent1.py`
-  - Runtime entrypoint (`python -m agent1.agent1`).
+- `ticket_ingestion/agent1.py`
+  - Runtime entrypoint (`python -m ticket_ingestion.agent1`).
   - Chooses source based on `AGENT1_SOURCE` (currently supports `jira`).
   - Wires source + listener + handler and starts polling loop.
   - Contains default handler that prints detected ticket details.
 
-- `agent1/test_jira_source.py`
+- `ticket_ingestion/test_jira_source.py`
   - Unit tests for Jira adapter behavior.
   - Verifies JQL/project filtering, event mapping, and strict new-event filtering logic.
 
-- `agent1/test_event_listener.py`
+- `ticket_ingestion/test_event_listener.py`
   - Unit tests for listener/checkpoint behavior.
   - Verifies event processing order, checkpoint persistence, and checkpoint reuse on restart.
 
-- `agent1/README.md`
+- `ticket_ingestion/README.md`
   - Quick start guide for environment variables, run command, and extension pattern.
 
-- `agent1/__init__.py`
+- `ticket_ingestion/__init__.py`
   - Marks `agent1` directory as a Python package.
-  - Enables imports like `from agent1.event_listener import EventListener`.
+  - Enables imports like `from ticket_ingestion.event_listener import EventListener`.
 
 5. Core Design
 --------------
@@ -92,7 +92,7 @@ Implemented and tested.
 
 6. Runtime Flow
 ---------------
-1. Start `python -m agent1.agent1`.
+1. Start `python -m ticket_ingestion.agent1`.
 2. Build source from env (`AGENT1_SOURCE`).
 3. Load checkpoint timestamp from state file.
 4. Poll source for new events.
@@ -123,9 +123,9 @@ On new ticket detection, handler prints:
 
 10. Tests
 ---------
-- `agent1/test_event_listener.py`
+- `ticket_ingestion/test_event_listener.py`
   - validates checkpoint load/save and event triggering
-- `agent1/test_jira_source.py`
+- `ticket_ingestion/test_jira_source.py`
   - validates Jira mapping, JQL usage, strict newer-than filtering
 
 Run tests:
@@ -160,45 +160,45 @@ Implemented and tested.
 
 4. Files Created
 ----------------
-- `agent2/models.py`
-- `agent2/source.py`
-- `agent2/jira_source.py`
-- `agent2/rules.py`
-- `agent2/rules.json`
-- `agent2/openai_categorizer.py`
-- `agent2/processor.py`
-- `agent2/agent2.py`
-- `agent2/env_loader.py`
-- `agent2/test_processor.py`
-- `agent2/README.md`
-- `agent2/__init__.py`
+- `validation_enrichment/models.py`
+- `validation_enrichment/source.py`
+- `validation_enrichment/jira_source.py`
+- `validation_enrichment/rules.py`
+- `validation_enrichment/rules.json`
+- `validation_enrichment/openai_categorizer.py`
+- `validation_enrichment/processor.py`
+- `validation_enrichment/agent2.py`
+- `validation_enrichment/env_loader.py`
+- `validation_enrichment/test_processor.py`
+- `validation_enrichment/README.md`
+- `validation_enrichment/__init__.py`
 
 4.1 File-by-File Description
 ----------------------------
-- `agent2/models.py`
+- `validation_enrichment/models.py`
   - Defines `RawTicket`, `AttachmentMeta`, and `ValidationEnrichmentResult`.
   - Result includes raw ticket payload and downloaded attachment paths.
 
-- `agent2/source.py`
+- `validation_enrichment/source.py`
   - Defines `TicketSource` interface for flexible source integrations.
   - Requires `fetch_issue(issue_key)` and `download_attachments(...)`.
 
-- `agent2/jira_source.py`
+- `validation_enrichment/jira_source.py`
   - Jira adapter implementation of `TicketSource`.
   - Fetches full issue details and downloads attachments.
 
-- `agent2/rules.py`
+- `validation_enrichment/rules.py`
   - Loads validation rules from JSON and provides requirements by category.
 
-- `agent2/rules.json`
+- `validation_enrichment/rules.json`
   - Initial category-to-required-information mapping.
   - You can update this file with your own business rules.
 
-- `agent2/openai_categorizer.py`
+- `validation_enrichment/openai_categorizer.py`
   - Uses OpenAI to classify ticket into one allowed category.
   - Falls back to keyword-based categorization if `OPENAI_API_KEY` is not set.
 
-- `agent2/processor.py`
+- `validation_enrichment/processor.py`
   - Orchestrates end-to-end flow:
     - fetch ticket
     - download attachments
@@ -206,20 +206,20 @@ Implemented and tested.
     - validate required info against available info
     - produce final output object
 
-- `agent2/agent2.py`
+- `validation_enrichment/agent2.py`
   - Agent2 entrypoint.
   - Reads `.env`, accepts issue key, runs processor, writes output JSON.
 
-- `agent2/env_loader.py`
+- `validation_enrichment/env_loader.py`
   - Minimal `.env` loader for Agent2 isolation.
 
-- `agent2/test_processor.py`
+- `validation_enrichment/test_processor.py`
   - Unit test for validation/enrichment behavior.
 
-- `agent2/README.md`
+- `validation_enrichment/README.md`
   - Quick run and behavior notes.
 
-- `agent2/__init__.py`
+- `validation_enrichment/__init__.py`
   - Marks package for imports.
 
 5. Core Design
@@ -230,14 +230,14 @@ Implemented and tested.
 
 6. Runtime Flow
 ---------------
-1. Start `python -m agent2.agent2 --issue-key <KEY>`.
+1. Start `python -m validation_enrichment.agent2 --issue-key <KEY>`.
 2. Load `.env`.
 3. Build source (`AGENT2_SOURCE`, currently `jira`).
 4. Fetch full ticket for `<KEY>`.
-5. Download ticket attachments under `agent2/attachments/<KEY>/` (or configured path).
+5. Download ticket attachments under `validation_enrichment/attachments/<KEY>/` (or configured path).
 6. Categorize using OpenAI.
 7. Apply rule requirements for selected category.
-8. Write output JSON to `agent2/output/<KEY>.json` (or configured output file).
+8. Write output JSON to `validation_enrichment/output/<KEY>.json` (or configured output file).
 
 7. Configuration (Env Vars)
 ---------------------------
@@ -251,9 +251,9 @@ Required input:
 - `AGENT2_INPUT_ISSUE_KEY` or `--issue-key` CLI argument
 
 Optional:
-- `AGENT2_RULES_FILE=agent2/rules.json`
-- `AGENT2_ATTACHMENT_ROOT=agent2/attachments/<issue-key>`
-- `AGENT2_OUTPUT_FILE=agent2/output/<issue-key>.json`
+- `AGENT2_RULES_FILE=validation_enrichment/rules.json`
+- `AGENT2_ATTACHMENT_ROOT=validation_enrichment/attachments/<issue-key>`
+- `AGENT2_OUTPUT_FILE=validation_enrichment/output/<issue-key>.json`
 - `OPENAI_API_KEY=<key>`
 - `OPENAI_MODEL=gpt-4o-mini`
 
@@ -263,11 +263,11 @@ PowerShell:
 
 `$env:AGENT2_SOURCE="jira"`
 `$env:AGENT2_INPUT_ISSUE_KEY="ABC-123"`
-`.\\venv\\Scripts\\python -m agent2.agent2`
+`.\\venv\\Scripts\\python -m validation_enrichment.agent2`
 
 Or explicit key:
 
-`.\\venv\\Scripts\\python -m agent2.agent2 --issue-key ABC-123`
+`.\\venv\\Scripts\\python -m validation_enrichment.agent2 --issue-key ABC-123`
 
 9. Current Output Behavior
 --------------------------
@@ -278,11 +278,11 @@ Or explicit key:
   - category
   - missing information (if any)
 - Output artifact:
-  - `agent2/output/<issue-key>.json`
+  - `validation_enrichment/output/<issue-key>.json`
 
 10. Tests
 ---------
-- `agent2/test_processor.py`
+- `validation_enrichment/test_processor.py`
   - validates category-based missing-information detection
 
 Run tests:
@@ -355,3 +355,4 @@ FUTURE AGENT-SPECIFIC GUIDELINES
 Add your future instructions below:
 
 - 
+

@@ -1,4 +1,4 @@
-from __future__ import annotations
+﻿from __future__ import annotations
 
 import argparse
 import json
@@ -274,7 +274,7 @@ def resolve_output_path(ticket: dict[str, Any], output_file: str) -> Path:
         or "ticket"
     )
     safe_issue_key = re.sub(r"[^a-zA-Z0-9_.-]", "_", issue_key)
-    return Path(f"agent4/output/{safe_issue_key}.json")
+    return Path(f"rca_synthesis/output/{safe_issue_key}.json")
 
 
 def main() -> None:
@@ -310,3 +310,4 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
+

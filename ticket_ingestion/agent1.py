@@ -1,13 +1,13 @@
-from __future__ import annotations
+﻿from __future__ import annotations
 
 import os
 import subprocess
 import sys
 
-from agent1.env_loader import load_env_file
-from agent1.event_listener import EventListener, build_checkpoint_store_from_env
-from agent1.jira_source import JiraSource
-from agent1.models import TicketCreatedEvent
+from ticket_ingestion.env_loader import load_env_file
+from ticket_ingestion.event_listener import EventListener, build_checkpoint_store_from_env
+from ticket_ingestion.jira_source import JiraSource
+from ticket_ingestion.models import TicketCreatedEvent
 
 
 def handle_ticket_created(event: TicketCreatedEvent) -> None:
@@ -18,7 +18,7 @@ def handle_ticket_created(event: TicketCreatedEvent) -> None:
     if os.getenv("AGENT1_TRIGGER_AGENT2", "false").strip().lower() == "true":
         print(f"[agent1] Triggering agent2 for issue: {event.ticket_key}")
         subprocess.run(
-            [sys.executable, "-m", "agent2.agent2", "--issue-key", event.ticket_key],
+            [sys.executable, "-m", "validation_enrichment.agent2", "--issue-key", event.ticket_key],
             check=False,
         )
 
@@ -45,3 +45,4 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
+

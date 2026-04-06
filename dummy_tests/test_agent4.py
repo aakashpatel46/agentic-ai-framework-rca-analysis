@@ -1,4 +1,4 @@
-from __future__ import annotations
+﻿from __future__ import annotations
 
 import json
 import sys
@@ -8,7 +8,7 @@ PROJECT_ROOT = Path(__file__).resolve().parents[1]
 if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
 
-from agent4.agent4 import Agent4RcaSynthesizer, load_env_file
+from rca_synthesis.agent4 import Agent4RcaSynthesizer, load_env_file
 
 
 def _read_json_file(path: Path) -> dict:
@@ -19,7 +19,7 @@ def main() -> None:
     load_env_file(".env")
 
     ticket_path = Path("dummy_tests/current_ticket.json")
-    agent3_output_path = Path("agent3/output/JMCH-DUMMY-3001.json")
+    agent3_output_path = Path("multi_source_analysis/output/JMCH-DUMMY-3001.json")
     if not agent3_output_path.exists():
         agent3_output_path = Path("dummy_tests/output/agent3_dummy_output.json")
 
@@ -28,7 +28,7 @@ def main() -> None:
     if not agent3_output_path.exists():
         raise FileNotFoundError(
             "Missing Agent3 output file. Run agent3 first to generate one under "
-            "'agent3/output/' or 'dummy_tests/output/'."
+            "'multi_source_analysis/output/' or 'dummy_tests/output/'."
         )
 
     ticket = _read_json_file(ticket_path)
@@ -54,4 +54,5 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
+
 
