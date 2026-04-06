@@ -1,0 +1,33 @@
+{
+  "Issue key": "JMCH-DUMMY-3001",
+  "Summary": "POS terminal crashes during refund flow for guest checkout orders",
+  "Description": "Store reports intermittent crash while processing refunds for guest checkout transactions. Issue appears after selecting original receipt and submitting refund.",
+  "Priority": "High",
+  "Issue Type": "Bug",
+  "Components": [
+    "point-of-sale",
+    "refund-service"
+  ],
+  "Labels": [
+    "refund",
+    "guest-checkout",
+    "production"
+  ],
+  "Organizations": [
+    "Retail Ops"
+  ],
+  "Environment": "Production",
+  "Affects Version/s": [
+    "250.1"
+  ],
+  "Steps to Reproduce": [
+    "Open POS and search for a guest checkout receipt",
+    "Click refund and confirm amount",
+    "Observe crash after confirmation"
+  ],
+  "Error Message": "NullPointerException in refund handler",
+  "Comments": [
+    "Issue started after weekend deployment.",
+    "Does not reproduce for registered users."
+  ]
+}

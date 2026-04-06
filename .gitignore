@@ -1,0 +1,53 @@
+# Python cache/bytecode
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+venv/
+.venv/
+env/
+ENV/
+
+# Environment/secrets
+.env
+.env.*
+!.env.example
+
+# IDE/editor
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+~$*
+
+# Logs/runtime
+*.log
+*.out
+*.err
+application_logs/
+
+# Test/cache/tooling
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+coverage.xml
+htmlcov/
+
+# Streamlit/cache
+.streamlit/
+
+# Project-generated outputs/state
+.agent_state/
+agent1/output/
+agent2/output/
+agent2/attachments/
+agent3/output/
+agent4/output/
+agent5/output/
+framework/output/

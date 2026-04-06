@@ -1,0 +1,52 @@
+How we split for embeddings (chunking)
+
+    We build sections in this order:
+    Summary
+    Description
+    Organizations
+    AI Summary
+    Each Comment (one section per comment)
+    If any single section is very large, we split it into parts of MAX_SECTION_TOKENS (default 1000 tokens).
+    Example: Comment 5 (part 2)
+    We group sections into chunks until we reach MAX_TOKENS_PER_CHUNK (default 6000 tokens).
+    Each chunk is embedded separately.
+    How we split metadata
+    Each chunk becomes one Pinecone vector.
+    Metadata is not trimmed; instead it is distributed across chunks:
+
+    Chunk 1 metadata includes:
+
+    summary
+    description
+    organizations
+    ai_summary
+    some comments (if they fit in chunk 1)
+    Chunk 2+ metadata:
+
+    only includes comment sections present in that chunk
+    summary/description/org/ai_summary are blank to reduce size
+    Every vector stores:
+
+    issue_key (and parent_issue_key)
+    chunk_index
+    chunk_total
+    comments (only those in that chunk)
+    Vector IDs:
+
+    JMCH-1717 → chunk 1
+    JMCH-1717::chunk-2 → chunk 2
+    JMCH-1717::chunk-3 → chunk 3
+    ...
+    What this means for retrieval
+    When you search and get a match:
+
+    Extract the issue_key from the match metadata.
+    Fetch all chunk IDs for that issue key (1..chunk_total).
+    Merge comments from all chunks.
+    Use summary/description/org/ai_summary from chunk 1.
+    If you want, I can write a retrieval script that:
+
+    embeds a query
+    searches Pinecone
+    groups by issue key
+    fetches all chunks and merges them into a single ticket object

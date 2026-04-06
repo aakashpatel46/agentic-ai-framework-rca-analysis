@@ -1,0 +1,5745 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  
+<!-- Mirrored from commerce-docs.jumpmind.com/Releases/ReleaseNotes - 243.1.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 06 Feb 2026 13:25:02 GMT -->
+<head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="ReleaseNotes%20-%20243.2.html">
+      
+      
+        <link rel="next" href="ReleaseNotes%20-%20243.0.html">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>243.1 - Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+      
+
+
+    
+    
+      
+        <script src="https://unpkg.com/iframe-worker/shim"></script>
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../Resources/Style.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#2431-release-notes-jumpmind-commerce" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../index.html" title="Documentation" class="md-header__button md-logo" aria-label="Documentation" data-md-component="logo">
+      
+  <img src="../Resources/jumpmind_commerce_logo_white.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              243.1
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../index.html" title="Documentation" class="md-nav__button md-logo" aria-label="Documentation" data-md-component="logo">
+      
+  <img src="../Resources/jumpmind_commerce_logo_white.png" alt="logo">
+
+    </a>
+    Documentation
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Implementors
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Implementors
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Implementors/GettingStarted.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting Started
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_1_2" id="__nav_1_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Extending
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_1_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Extending
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Implementors/Extending/Overview.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Implementors/Extending/MicroserviceEndpoints.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Microservice Endpoints
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Implementors/Extending/StateFlowOverrides.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    State and Flow Overrides
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Implementors/Extending/StateBeans.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    State Beans
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Implementors/Extending/ScreenBuilders.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Screen Builders
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Implementors/Extending/Finalizers.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Finalizers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Implementors/Extending/ContentProviders.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Content Providers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Implementors/Extending/TypeCodes.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TypeCodes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Implementors/Extending/NewTenderTypes.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    New Tender Types
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Implementors/Extending/RequiredItemActions.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Required Item Actions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Implementors/Extending/MicroCapabilities.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Micro Capabilities
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Implementors/Extending/AndroidExtensionLibrary.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Android Extension Library
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_1_3" id="__nav_1_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Deployment
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_1_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Deployment
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Implementors/Deployment/Personalization/Personalization.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Personalization
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Implementors/Deployment/SSL/SSL.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SSL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Implementors/Deployment/manual-store-installation.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Manual Store Installation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Implementors/Deployment/CommerceContainer.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Containers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Implementors/Deployment/Kubernetes.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kubernetes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Implementors/Deployment/Helm_Values.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Helm Values
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Implementors/Deployment/StateLB.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    StateLB
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_1_4" id="__nav_1_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Inventory
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_1_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Inventory
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Implementors/Inventory/Inventory.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Implementors/Inventory/Adjustments.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Adjustments
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Implementors/Inventory/StoreCounts.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Store Counts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Implementors/Inventory/Receiving.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Receiving
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Implementors/Inventory/Shipping.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Shipping
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Implementors/Inventory/TicketPrinting.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ticket Printing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Implementors/Inventory/API.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Implementors/micro-cap-clienteling.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Clienteling
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Implementors/micro-cap-shopkeeper-implementation.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Shopkeeper
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Implementors/Peripherals/Peripherals.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Peripherals
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Implementors/Publisher.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Publisher
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Implementors/PublisherDeprecated.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Publishers (Deprecated)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_1_10" id="__nav_1_10_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Integration
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_1_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1_10">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Integration
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Implementors/IntegrationUserGuide/integrationUserGuide.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Implementors/IntegrationUserGuide/order-fulfillment.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Order Fulfillment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Implementors/DataModel.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Model
+  
+
+    
+      <br>
+      <small>Data Model</small>
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Implementors/ConfigurationGuide.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuration Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Implementors/LoyaltyCustomer.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Loyalty Customer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Developers/pos-api.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Point of Sales API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Implementors/QuickLoaderDocs.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quick Loader
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_16" >
+        
+          
+          <label class="md-nav__link" for="__nav_1_16" id="__nav_1_16_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Logging and Telemetry
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_1_16_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1_16">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Logging and Telemetry
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Implementors/LoggingAndTelemetry/logging-and-telemetry.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Implementors/LoggingAndTelemetry/Database/database-logging.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Database
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Implementors/LoggingAndTelemetry/Logging/application-logging.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Logging
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Implementors/LoggingAndTelemetry/ServiceSampling/service-sampling.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Service Sampling
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Implementors/LoggingAndTelemetry/Telemetry/open-telemetry.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Telemetry
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_17" >
+        
+          
+          <label class="md-nav__link" for="__nav_1_17" id="__nav_1_17_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Forms
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_1_17_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1_17">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Forms
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Implementors/Forms/Forms.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Forms
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Implementors/Forms/AddressAutoCompleteSetupGuide.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Address Auto Complete Setup
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Implementors/Forms/EmailValidationSetupGuide.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Email Validation Setup
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Implementors/Tenders.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tenders
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Implementors/VatRefund.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    VAT Refunds
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Functional
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Functional
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Functional/Customer/Loyalty/LoyaltyFormConfiguration.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Customer Loyalty
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Functional/Device%20Identity/IDP_API-external.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Device Identity
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Daily Operations
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Daily Operations
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Functional/Daily%20Operations/Daily%20Operations.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Daily Operations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Functional/Daily%20Operations/Daily%20Operations_CashUp_CashDown.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CashUp and CashDown
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Functional/Daily%20Operations/Daily%20Operations_NoSale.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NoSale
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Functional/Daily%20Operations/Daily%20Operations_Open_Close.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Open and Closed
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Functional/Daily%20Operations/Daily%20Operations_PayIn_PayOut.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PayIn and PayOut
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Functional/Daily%20Operations/Daily%20Operations_Post_Void.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Post Void
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Functional/Daily%20Operations/Daily%20Operations_Reports.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reports
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Functional/Daily%20Operations/Daily%20Operations_Till_Management.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Operations till Management
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Functional/Training%20Mode/Training%20Mode.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Training Mode
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Functional/Transaction%20Search/Transaction%20Search.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Transaction Search
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Functional/User%20Management/User%20Management.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    User Management
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Functional/Product/Item%20Inquiry/Item%20Inquiry.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Item Inquiry
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_5" id="__nav_2_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Product Inquiry
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Product Inquiry
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Functional/Product/Product%20Inquiry/ProductInquiry.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Implementation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Functional/Product/Product%20Inquiry/ProductInquiryMigrationGuide.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Migration to Product Inquiry from Item Inquiry
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_6" id="__nav_2_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Orders
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Orders
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Functional/Omni-Channel/Orders/DeliveryOrders.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DeliveryOrders
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Functional/Omni-Channel/Orders/PickupOrders.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PickupOrders
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_7" id="__nav_2_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Payment
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Payment
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Functional/Payment/Credit/ACI/ACI%20Development%20Info.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ACI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Functional/Payment/Credit/Adyen/adyen.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Adyen
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Functional/Payment/Credit/NCR/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NCR
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Functional/Payment/Credit/Aurus/aurus.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Aurus
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_8" id="__nav_2_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pricing and Promotions
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Pricing and Promotions
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Functional/Pricing%20and%20Promotions/Promotions.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Promotions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Functional/Pricing%20and%20Promotions/Bounce_Back_Coupons.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bounce Back Coupons
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Functional/Receipts%20and%20Reports/Receipts/Receipts.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Receipts and Reports
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Functional/Returns%20Management/Returns%20Management.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Returns Management
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_11" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_11" id="__nav_2_11_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sales
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_11">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Sales
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Functional/Sales/Sales.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sales
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Functional/Sales/Sales_Cancel.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cancel
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Functional/Sales/Sales_Custom_Items.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Custom items
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Functional/Sales/Sales_Discount_Coupons.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Discount Coupons
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Functional/Sales/Sales_Donations.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Donations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Functional/Sales/Sales_GiftCards.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Gift Cards
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Functional/Sales/Sales_Price_Override.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Price Override
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Functional/Sales/Sales_Screen_Intro.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Screen Intro
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Functional/Sales/Sales_Suspend_Resume.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Suspend Resume
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Functional/Sales/Sales_Tax_Exempt.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tax Exempt
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Functional/Sales/Sales_TaxGroup_ItemExemption.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tax Group Item Exemption
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Functional/Sales/Sales_TaxOverride.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tax Override
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Functional/Sales/Transaction%20Operations.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Transaction Operations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_12" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_12" id="__nav_2_12_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tax
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_12_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_12">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Tax
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Functional/Tax/ItemGroup_Tax_Exemptions.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ItemGroup Exemptions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Functional/Tax/Tax.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tax
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Functional/Tax/Transaction_TaxRateOverride.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TaxRateOverride
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Functional/Tendering/Tendering.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tendering
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_14" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_14" id="__nav_2_14_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Clienteling
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_14_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_14">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Clienteling
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Functional/Clienteling/Appointments.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Appointments
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Functional/Clienteling/Consultation.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Consultation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Developers
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Developers
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Developers/developer-faq.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FAQ
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Developers/developer-setup.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Setup
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Developers/Flows/flows.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Choreographer (Flows)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Developers/Flows/state-beans.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    State Beans
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Developers/Incidents%20and%20Errors/incidents.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Incidents and Errors
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Developers/Micro%20Capabilities/micro-caps.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Micro Capabilities
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Developers/Microservices/microservices.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Microservices
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Developers/Persistence%20Layer/openpos-persist.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Persistence Layer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Developers/micro-cap-shopkeeper-dev.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Shopkeeper
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_10" id="__nav_3_10_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Naming Conventions
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_10">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Naming Conventions
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Developers/Resources/Resource%20Bundling%20Naming%20Conventions.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Resource Bundles
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_11" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_11" id="__nav_3_11_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Device Identity (IDP)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_11">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Device Identity (IDP)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Developers/IDP/1-IDP_API.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Developers/IDP/2-IDP_Server_Implementation.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Server Implementation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_11_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_11_3" id="__nav_3_11_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Client Implementation
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_11_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_11_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Client Implementation
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Developers/IDP/3-IDP_Client_v1_Implementation.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Version 1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Developers/IDP/4-IDP_Client_v2_Implementation.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Version 2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Developers/IDP/5-IDP_Developer_Setup.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Developer Setup
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Developers/IDP/6-IDP_Client_Assertion.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Client Assertion
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Developers/support.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Support
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Releases
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Releases
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ReleaseStrategy.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Release Cycle
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5_2" id="__nav_5_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Release Notes
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Release Notes
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ReleaseNotes%20-%20250.1.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    250.1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ReleaseNotes%20-%20250.0.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    250.0
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ReleaseNotes%20-%20243.10.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    243.10
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ReleaseNotes%20-%20243.9.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    243.9
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ReleaseNotes%20-%20243.8.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    243.8
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ReleaseNotes%20-%20243.7.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    243.7
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ReleaseNotes%20-%20243.6.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    243.6
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ReleaseNotes%20-%20243.5.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    243.5
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ReleaseNotes%20-%20243.4.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    243.4
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ReleaseNotes%20-%20243.3.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    243.3
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ReleaseNotes%20-%20243.2.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    243.2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    243.1
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="ReleaseNotes%20-%20243.1.html" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    243.1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#announcing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Announcing
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#point-of-sale" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Point Of Sale
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#promote" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Promote
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#retail-core-shared-core-by-store-applications" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Retail Core (Shared core by store applications)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#unified-promotion-engine" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Unified Promotion Engine
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ReleaseNotes%20-%20243.0.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    243.0
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ReleaseNotes%20-%20242.1.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    242.1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ReleaseNotes%20-%20242.0.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    242.0
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ReleaseNotes%20-%20241.0.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    241.0
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ReleaseNotes%20-%20232.0.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    232.0
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#announcing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Announcing
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#point-of-sale" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Point Of Sale
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#promote" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Promote
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#retail-core-shared-core-by-store-applications" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Retail Core (Shared core by store applications)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#unified-promotion-engine" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Unified Promotion Engine
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="2431-release-notes-jumpmind-commerce">243.1 - Release Notes - Jumpmind Commerce<a class="headerlink" href="#2431-release-notes-jumpmind-commerce" title="Permanent link">&para;</a></h1>
+<h2 id="announcing">Announcing<a class="headerlink" href="#announcing" title="Permanent link">&para;</a></h2>
+<h2 id="point-of-sale">Point Of Sale<a class="headerlink" href="#point-of-sale" title="Permanent link">&para;</a></h2>
+<h3 id="243134">243.1.34<a class="headerlink" href="#243134" title="Permanent link">&para;</a></h3>
+<h4 id="new-improved">New + Improved<a class="headerlink" href="#new-improved" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Promotion engine should allow for single item promotion optimization (JMC-9287)</li>
+</ul>
+<h3 id="243133">243.1.33<a class="headerlink" href="#243133" title="Permanent link">&para;</a></h3>
+<h4 id="fixed">Fixed<a class="headerlink" href="#fixed" title="Permanent link">&para;</a></h4>
+<ul>
+<li>SymmetricDS throws a java.lang.IllegalStateException: form with too many fields &gt; 1000 when more than 50 batches attempt to syncCherry Pick to 243.1 (JMC-9163)</li>
+</ul>
+<h3 id="243131">243.1.31<a class="headerlink" href="#243131" title="Permanent link">&para;</a></h3>
+<h4 id="fixed_1">Fixed<a class="headerlink" href="#fixed_1" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Business Date | Add businessDate to the primary key of ops_unit_status to version 243.1 (JMC-9015)</li>
+<li>JMC Register unusable after 300k simple promotion configured for store. (JMC-8062)</li>
+<li>PRICE_TOTAL promotions cause POS to slow down as more are added to the basket (COM-601)</li>
+<li>Swagger UI Fails to Load due to SpringDoc-Spring Framework Incompatibility (JMC-8797)</li>
+</ul>
+<h3 id="243130">243.1.30<a class="headerlink" href="#243130" title="Permanent link">&para;</a></h3>
+<h4 id="fixed_2">Fixed<a class="headerlink" href="#fixed_2" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Build Fails After Upgrading to Version 243.1.29index already exists error (COM-625)</li>
+</ul>
+<h3 id="243129">243.1.29<a class="headerlink" href="#243129" title="Permanent link">&para;</a></h3>
+<h4 id="fixed_3">Fixed<a class="headerlink" href="#fixed_3" title="Permanent link">&para;</a></h4>
+<ul>
+<li>After updating Jumpmind from AE/AED to SA/SAR, the sales screen still shows amounts in USD and prompts for payments in USD. This suggests the default currency or locale settings are not fully applied or overridden elsewhere.  (JMC-8552)</li>
+<li>Cherry pick JMC-7927 to 243.1Transaction level promo code discount getting removed upon adding a second item level discount (JMC-8178)</li>
+<li>Update the gradle version to 8.12.1 (JMC-8600)</li>
+</ul>
+<h3 id="243127">243.1.27<a class="headerlink" href="#243127" title="Permanent link">&para;</a></h3>
+<h4 id="new-improved_1">New + Improved<a class="headerlink" href="#new-improved_1" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Self Checkout | Provide ability to add a placeholder on the receipt option selection screen to display an image (COM-248)</li>
+</ul>
+<h4 id="fixed_4">Fixed<a class="headerlink" href="#fixed_4" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Backport changes for Endless loop when promptAssociateAssistedSaleEnabled enabled issue to 243.1 (JMC-7321)</li>
+<li>Self Checkout | Fix styling on tender screen split while paying with multiple tenders (JMC-7320)</li>
+<li>Self Checkout | Revert changes for On-screen keyboard is overlapping various dialogs on the SCO Tender screen (JMC-7330)</li>
+<li>Self Checkout | Zero balance does not show the continue button on the tender screen (JMC-7385)</li>
+</ul>
+<h3 id="243126">243.1.26<a class="headerlink" href="#243126" title="Permanent link">&para;</a></h3>
+<h4 id="new-improved_2">New + Improved<a class="headerlink" href="#new-improved_2" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Self Checkout | Provide the ability to show split tenders on the Tender screen when paying with multiple tenders and prevent customers from removing tenders (JMC-6771)</li>
+<li>Technical | Update spring versions to address CVEs (JMC-6912)</li>
+</ul>
+<h4 id="fixed_5">Fixed<a class="headerlink" href="#fixed_5" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Guest Checkout | Not able to checkout as Guest when customer is not a Shukran member (JMC-6774)</li>
+<li>Self Checkout | Loyalty points balance does not display on Tender tile in Self-checkout customer mode (JMC-6903)</li>
+<li>Self Checkout | On-screen keyboard is overlapping various dialogs on the SCO Tender screen (JMC-6772)</li>
+<li>Self Checkout | Quantity adjusted in Associate Mode does not display properly in SCO Mode (JMC-6859)</li>
+<li>Training Mode | Training mode causes sequence number to be reset (JMC-7149)</li>
+</ul>
+<h4 id="security">Security<a class="headerlink" href="#security" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Addressing CVE-2024-8184 (Technical | Updating Jetty Version)</li>
+</ul>
+<h3 id="243125">243.1.25<a class="headerlink" href="#243125" title="Permanent link">&para;</a></h3>
+<h4 id="fixed_6">Fixed<a class="headerlink" href="#fixed_6" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Returns | Processing is slow with large baskets because the transaction is looked up twice and details dialog makes too many calls to find original transactions (JMC-6711)</li>
+</ul>
+<h3 id="243124">243.1.24<a class="headerlink" href="#243124" title="Permanent link">&para;</a></h3>
+<h4 id="fixed_7">Fixed<a class="headerlink" href="#fixed_7" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Tenders | Restore Additional Text for Tile Buttons on Tender Option screen (JMC-6551)</li>
+<li>Transaction Bridge | Transaction bridge does not populate the JMC AuthLineItemModel on a transaction thus preventing referenced returns from OrPOS from working (JMC-6595)</li>
+</ul>
+<h3 id="243122">243.1.22<a class="headerlink" href="#243122" title="Permanent link">&para;</a></h3>
+<h4 id="new-improved_3">New + Improved<a class="headerlink" href="#new-improved_3" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Cherry pick Convert CustomerResultsLookupState to state-bean pattern (JMC-6438)</li>
+</ul>
+<h4 id="fixed_8">Fixed<a class="headerlink" href="#fixed_8" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Receipts | Images created in local temp dir for Epson JavaPOS printer can accumulate (JMC-6452)</li>
+<li>Technical | On slower hardware, Commerce client can display an older dialog after a newer screen has been displayed (JMC-6451)</li>
+<li>UareU Biometric reader stops working when a customer display is launched with the point of sale (JMC-6428)</li>
+</ul>
+<h3 id="243121">243.1.21<a class="headerlink" href="#243121" title="Permanent link">&para;</a></h3>
+<h4 id="new-improved_4">New + Improved<a class="headerlink" href="#new-improved_4" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Technical Enhancement | Improve JavaPOS printing performance on Epson printers (JMC-6357)</li>
+</ul>
+<h4 id="fixed_9">Fixed<a class="headerlink" href="#fixed_9" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Loyalty rewards do not render on the customer details screen (JMC-4980)</li>
+<li>Promotions | Special single item "clearance" promotion processor shouldn't require a reward item because the engine doesn't require the reward item row (JMC-6358)</li>
+<li>qualification attribute NOT IN not working  (JMC-6396)</li>
+</ul>
+<h3 id="243120">243.1.20<a class="headerlink" href="#243120" title="Permanent link">&para;</a></h3>
+<h4 id="new-improved_5">New + Improved<a class="headerlink" href="#new-improved_5" title="Permanent link">&para;</a></h4>
+<ul>
+<li>BackportPromotionAdd ability to choose 'NOT IN' as an attribute option (JMC-6255)</li>
+<li>Discounted line items with qty &gt; 1 are not mapping correctly into OrPOS price modifier table (JMC-6070)</li>
+<li>Internationalization | Add support for i18n business unit names and addresses (JMC-6230)</li>
+<li>Multi Lingual Receipt (JMC-3457)</li>
+<li>Receipts | Configurable QR Code and Barcode size on receipt (JMC-5996)</li>
+</ul>
+<h4 id="fixed_10">Fixed<a class="headerlink" href="#fixed_10" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Fast closed tills can be reconciled while the store is closed. (JMC-5985)</li>
+<li>Printing | Problems with printing to Epson TM-T88 printers using JavaPOS printing protocol (JMC-6214)</li>
+<li>Quickloader | Entity item feed files are failing  (JMC-6302)</li>
+<li>Technical | NullPointerException when attempting to add a bag item to a transaction and itm_item.tax_exempt_code is null (JMC-6141)</li>
+<li>When promotions calcInBackground = true is set and dozens of items are rapidly scanned, discounts stop updating after a certain point (JMC-6129)</li>
+</ul>
+<h3 id="243119">243.1.19<a class="headerlink" href="#243119" title="Permanent link">&para;</a></h3>
+<h4 id="new-improved_6">New + Improved<a class="headerlink" href="#new-improved_6" title="Permanent link">&para;</a></h4>
+<ul>
+<li>AutopersonalizationOverwrite failover URL at regular intervals (JMC-4727)</li>
+<li>Move Bag Fee Fix to all branches (JMC-6032)</li>
+</ul>
+<h4 id="fixed_11">Fixed<a class="headerlink" href="#fixed_11" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Detailed Till Tender Count Reconcile screen does not display currency in correct locale (JMC-6083)</li>
+<li>Infinite loop with lowest price reward application type with price total rewards (JMC-6046)</li>
+<li>PromotionAMT_TOTAL as a qualifier is not working properly when using the item quantity option (JMC-5921)</li>
+<li>Slow performance on certain large baskets with large amounts of promotions (JMC-6055)</li>
+<li>Store close dialog money prompt fields do not show localized currency values (JMC-6078)</li>
+<li>The default Till Tender Count reconcile amount can mismatch the Expected till amount on the Detailed Till Tender Count screen for foreign currencies (JMC-6084)</li>
+<li>Transaction Publisher | Publisher should honor retry/failure logic when unlocking a queued item (JMC-5760)</li>
+<li>Voided tenders are published to OrPOS TR_LTM_TND table (JMC-6072)</li>
+</ul>
+<h3 id="243118">243.1.18<a class="headerlink" href="#243118" title="Permanent link">&para;</a></h3>
+<h4 id="new-improved_7">New + Improved<a class="headerlink" href="#new-improved_7" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Add support to display static text on receipts for multiple locales (JMC-6027)</li>
+</ul>
+<h4 id="fixed_12">Fixed<a class="headerlink" href="#fixed_12" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Internationalization | POS background image sometimes shows "lista" instead of "ready" (JMC-4612)</li>
+</ul>
+<h3 id="243117">243.1.17<a class="headerlink" href="#243117" title="Permanent link">&para;</a></h3>
+<h4 id="new-improved_8">New + Improved<a class="headerlink" href="#new-improved_8" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Enable server side heartbeat for websockets to minimize disconnect and reconnects (JMC-5922)</li>
+<li>Include the locale in the log when promotions are loaded (JMC-5923)</li>
+</ul>
+<h4 id="fixed_13">Fixed<a class="headerlink" href="#fixed_13" title="Permanent link">&para;</a></h4>
+<ul>
+<li>A manual amount discount applied to a line item with a large quantity results in an incorrect discount amount (JMC-5971)</li>
+<li>Cashier can get stuck in an infinite loop on Returns screen if manager override is declined (JMC-5974)</li>
+<li>Long tender names can cause returns virtual receipt text to overflow (JMC-5940)</li>
+<li>Promotions | Commerce price modifier lines do not have enough information about the method of modification (amount vs. percent) (JMC-5782)</li>
+<li>Promotions | Transaction Manual Percent/Amount Discounts do not require an amount to be entered (JMC-5991)</li>
+<li>Store cycle screen does not show keyboard shortcuts (key bindings) on buttons (JMC-5965)</li>
+<li>Transaction Publisher | DefaultRequestStrategy for publisher should use <code>RawValue</code> instead of custom record (JMC-5759)</li>
+<li>Unable to apply multiple promo code coupons to a single basket when they are of the same promotion_id (JMC-5823)</li>
+</ul>
+<h3 id="243116">243.1.16<a class="headerlink" href="#243116" title="Permanent link">&para;</a></h3>
+<h4 id="fixed_14">Fixed<a class="headerlink" href="#fixed_14" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Promotion cache is primed for each connection, versus just on the first connection.   Priming the cache on every connection can slow down a reconnect. (JMC-5906)</li>
+</ul>
+<h3 id="243115">243.1.15<a class="headerlink" href="#243115" title="Permanent link">&para;</a></h3>
+<h4 id="new-improved_9">New + Improved<a class="headerlink" href="#new-improved_9" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Add DigitalPersona UareU based implementation for biometric fingerprint authentication (JMC-5350)</li>
+<li>CX Connect  | Support Pass to Customer for customer sign up (COM-104)</li>
+</ul>
+<h4 id="fixed_15">Fixed<a class="headerlink" href="#fixed_15" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Customer | Customer Signup Phase Two form does not populate default State and Country (JMC-5480)</li>
+<li>Fix transitive dependency issue for projects with dependencies on JMC (JMC-5870)</li>
+<li>Payment Device | Null pointer exception after Aurus declined response (COM-596)</li>
+<li>Printing performance is slow on Epson serial printers (JMC-5891)</li>
+<li>Promotions | Unable to apply a generic promotion coupon code (not tied to a loyalty_number) to a transaction with linked customer (JMC-5861)</li>
+<li>Returns | After a series of related sales, returns, and exchanges, tender buckets aren't tracked correctly (JMC-5468)</li>
+<li>Returns | Suggested Tender Amount Incorrect For Split Tender With Multiple Receipted Return (JMC-5801)</li>
+</ul>
+<h4 id="security_1">Security<a class="headerlink" href="#security_1" title="Permanent link">&para;</a></h4>
+<ul>
+<li>(CVE-2023-22102 for com.mysql_mysql-connector-java)</li>
+</ul>
+<h3 id="243114">243.1.14<a class="headerlink" href="#243114" title="Permanent link">&para;</a></h3>
+<h4 id="fixed_16">Fixed<a class="headerlink" href="#fixed_16" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Promotions | Item Manual Discount and Item Amount Discount functions do not require an amount to be entered (JMC-5771)</li>
+<li>Promotions | Unable to complete a trans and apply a bounce back coupon (JMC-5741)</li>
+<li>Transaction Bridge | Performance issues with transaction publisher (COM-622)</li>
+</ul>
+<h3 id="243113">243.1.13<a class="headerlink" href="#243113" title="Permanent link">&para;</a></h3>
+<h4 id="fixed_17">Fixed<a class="headerlink" href="#fixed_17" title="Permanent link">&para;</a></h4>
+<ul>
+<li>CX Connect | Customer display has duplicated items during returns process (JMC-5664)</li>
+<li>Quantity | Shrug when select option to change quantity of an item and click enter with no value supplied. (JMC-5723)</li>
+<li>Returns Bridge | Orig transaction fields are set incorrectly on return line items from Orpos (JMC-5602)</li>
+<li>Returns | Change due uses RETURN_CASH max tender amount instead of CHANGE_DUE_CASH  (JMC-5599)</li>
+<li>Returns | Employee Discount Sale in JMC and Returned in ORPOS not showing discounted amount (COM-586)</li>
+<li>Transaction Publisher | Publisher is not unlocking and updating status on postgres databases (JMC-5754)</li>
+</ul>
+<h4 id="upgrade-considerations">Upgrade Considerations<a class="headerlink" href="#upgrade-considerations" title="Permanent link">&para;</a></h4>
+<ul>
+<li>From application-bridge-orpos.yml:
+<div class="highlight"><pre><span></span><code>        UPDATE TR_LTM_SLS_RTN
+        SET QU_ITM_LN_RTN = QU_ITM_LN_RTN + :quItmLnRtn
+        WHERE ID_STR_RT = :idStrRtOrg
+            AND ID_WS = :idWsOrg
+            AND DC_DY_BSN = :dcDyBsnOrg
+            AND AI_TRN = :idTrnOrgRaw
+            AND AI_LN_ITM = :aiLnItmOrg
+</code></pre></div>
+  (JMC-5602)</li>
+</ul>
+<h3 id="243112">243.1.12<a class="headerlink" href="#243112" title="Permanent link">&para;</a></h3>
+<h4 id="new-improved_10">New + Improved<a class="headerlink" href="#new-improved_10" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Capture pre and post tender amounts for Tender Adjustments (JMC-5640)</li>
+</ul>
+<h4 id="fixed_18">Fixed<a class="headerlink" href="#fixed_18" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Promotions | AMT_TOTAL promotion throws NPE (JMC-5650)</li>
+</ul>
+<h3 id="243111">243.1.11<a class="headerlink" href="#243111" title="Permanent link">&para;</a></h3>
+<h4 id="fixed_19">Fixed<a class="headerlink" href="#fixed_19" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Transaction Publisher | Publishing stage uses read only transaction (COM-571)</li>
+</ul>
+<h3 id="243110">243.1.10<a class="headerlink" href="#243110" title="Permanent link">&para;</a></h3>
+<h4 id="new-improved_11">New + Improved<a class="headerlink" href="#new-improved_11" title="Permanent link">&para;</a></h4>
+<ul>
+<li>DSR Tender Reconciliation should display an amount for all tenders regardless (JMC-5371)</li>
+</ul>
+<h4 id="fixed_20">Fixed<a class="headerlink" href="#fixed_20" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Internationalization | When using a foreign currency if the tender policy is set to remaining balance the dialog shows the default currency (JMC-4894)</li>
+<li>Log In | After lock out, occasionally entering a valid password does not work and must restart app (JMC-5343)</li>
+<li>Operations | Allowed to return when till is not open (JMC-5485)</li>
+<li>Promotions | Promotion with a TRN_AMT qualification is not applied multiple times when maxUses &gt; 1 (JMC-5339)</li>
+<li>Returns Bridge | Orpos transaction needs to be updated after a transaction is post voided (JMC-5430)</li>
+<li>Returns | Returns bridge is not updating ORPOS price modifier table (JMC-5291)</li>
+<li>Returns | The return bucket is incorrect when multiple items are returned to the same tender bucket from different original transactions (JMC-5571)</li>
+</ul>
+<h4 id="upgrade-considerations_1">Upgrade Considerations<a class="headerlink" href="#upgrade-considerations_1" title="Permanent link">&para;</a></h4>
+<ul>
+<li>The value displayed in a blank cell on the Review Tender Adjustments dialog is now controlled by the manage:reviewTenderAdjustments.adjustmentTable.zeroDisplayValue i18n property.  The base commerce default display value is 0.  (JMC-5371)</li>
+<li>application-bridge-orpos.yml has been updated as follows.  Any overrides or replacements of the bridge services referenced may need to be modified accordingly:  (JMC-5430)</li>
+</ul>
+<h3 id="24319">243.1.9<a class="headerlink" href="#24319" title="Permanent link">&para;</a></h3>
+<h4 id="new-improved_12">New + Improved<a class="headerlink" href="#new-improved_12" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Pay With Points | Support displaying loyalty points monetary value on Customer Details (JMC-5218)</li>
+</ul>
+<h4 id="fixed_21">Fixed<a class="headerlink" href="#fixed_21" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Launch External | Electron ClientExecutable functionality is not functional on 243.x (JMC-5320)</li>
+<li>Receipted Returnssystem allowing to refund more than the transaction total. (JMC-5060)</li>
+<li>Refund amount not reflecting correctly when selecting tender type (JMC-4838)</li>
+</ul>
+<h4 id="upgrade-considerations_2">Upgrade Considerations<a class="headerlink" href="#upgrade-considerations_2" title="Permanent link">&para;</a></h4>
+<ul>
+<li>To enable display of the points monetary value, openpos.customer.membership.points.showMoneyBalance needs to be set to  true.  The default value is false.  Commerce uses the CalculateAvailableLoyaltyBalance endpoint to retrieve the value to display.  (JMC-5218)</li>
+</ul>
+<h4 id="security_2">Security<a class="headerlink" href="#security_2" title="Permanent link">&para;</a></h4>
+<ul>
+<li>(CVE-2022-25647)</li>
+</ul>
+<h3 id="24318">243.1.8<a class="headerlink" href="#24318" title="Permanent link">&para;</a></h3>
+<h4 id="new-improved_13">New + Improved<a class="headerlink" href="#new-improved_13" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Promotions | Unable to get entryMethod from Employee discount entry (JMC-5175)</li>
+<li>Services | Allow base IFinalizeSaleSessionListener implementations to be ordered to 0 (JMC-5178)</li>
+</ul>
+<h4 id="upgrade-considerations_3">Upgrade Considerations<a class="headerlink" href="#upgrade-considerations_3" title="Permanent link">&para;</a></h4>
+<ul>
+<li>As with before this change, in order to allow scanning of the employee Id on the employee discount dialog, you must have openpos.sell.employeeDiscountAllowScan = true.  When that config is true and you scan an employee, the resulting retail line item will have an entry_method_code of SCANNED.  Otherwise, the retail line item will now have an entry_method_code of KEYED.  Previously, it always had an entry_method_code of OTHER.  (JMC-5175)</li>
+</ul>
+<h3 id="24317">243.1.7<a class="headerlink" href="#24317" title="Permanent link">&para;</a></h3>
+<h4 id="new-improved_14">New + Improved<a class="headerlink" href="#new-improved_14" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Enhance base LookupEmployeeForDiscountEndpoint to include user check and allow for mutation of username (JMC-5167)</li>
+<li>Receipt Tile List View (JMC-5132)</li>
+<li>Support Tile View on Homescreen (JMC-4800)</li>
+</ul>
+<h4 id="fixed_22">Fixed<a class="headerlink" href="#fixed_22" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Customer | Email Validation Not Displaying on Customer Display (JMC-5087)</li>
+<li>Sub text for tender options is not styled for tiles (JMC-5135)</li>
+</ul>
+<h3 id="24316">243.1.6<a class="headerlink" href="#24316" title="Permanent link">&para;</a></h3>
+<h4 id="new-improved_15">New + Improved<a class="headerlink" href="#new-improved_15" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Change tender options UI to tile view (JMC-4806)</li>
+<li>Update Add Bag UI to Tile view (JMC-4803)</li>
+</ul>
+<h4 id="fixed_23">Fixed<a class="headerlink" href="#fixed_23" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Bridge | sls_tax_retail_line_item / tax_line_sequence_number needs to be set (JMC-5094)</li>
+<li>Tender Tiles cause foreign currency shrug (JMC-5134)</li>
+</ul>
+<h3 id="24315">243.1.5<a class="headerlink" href="#24315" title="Permanent link">&para;</a></h3>
+<h4 id="new-improved_16">New + Improved<a class="headerlink" href="#new-improved_16" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Bridge | Support "lookup original transaction by loyalty ID" (JMC-5030)</li>
+<li>Tender | All tenders are allowed to continue if set to zero. (JMC-5027)</li>
+</ul>
+<h4 id="fixed_24">Fixed<a class="headerlink" href="#fixed_24" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Bridge | Duplicate inserts attempted forever if publication fails (JMC-5088)</li>
+<li>Bridge | Quantity available to return not updated in ORPOS (JMC-4996)</li>
+</ul>
+<h4 id="upgrade-considerations_4">Upgrade Considerations<a class="headerlink" href="#upgrade-considerations_4" title="Permanent link">&para;</a></h4>
+<ul>
+<li>When a transaction is published out of our Bridge webhook subscriber, any failure, including timeouts, will keep that publication in Commerce's queue until it succeeds.  In the case of INSERTs to ORPOS which have succeeded at least in part, this will result in PK violations in perpetuity, as the publication will never complete successfully and will therefore never be released from the queue.Rather than address this issue at the pub/sub framework level in the short term, the fix is to perform a pre-check on any published transactions destined for ORPOS.  If the transaction already exists, do nothing and report a "success" status so the publication can be purged from the queue.  (JMC-5088)</li>
+</ul>
+<h3 id="24314">243.1.4<a class="headerlink" href="#24314" title="Permanent link">&para;</a></h3>
+<h4 id="new-improved_17">New + Improved<a class="headerlink" href="#new-improved_17" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Cash label when foreign currency should allow translation override (JMC-4890)</li>
+<li>Enhance extensibility of Transaction Bridge field adapters (JMC-5012)</li>
+<li>Tender Adjustment | Provide the ability to edit Tender Amounts by moving  one tender/amount to another tender/amount (JMC-4011)</li>
+</ul>
+<h4 id="fixed_25">Fixed<a class="headerlink" href="#fixed_25" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Application hangs indefinitely after selecting Email receipt option (JMC-4986)</li>
+<li>Prevent commerce from starting if two modules are defined with the same name (JMC-5005)</li>
+</ul>
+<h4 id="upgrade-considerations_5">Upgrade Considerations<a class="headerlink" href="#upgrade-considerations_5" title="Permanent link">&para;</a></h4>
+<ul>
+<li>This will result in your bean being used over the default ItemTypeAdapters.ToOrpos bean.  (JMC-5012)</li>
+</ul>
+<h3 id="24313">243.1.3<a class="headerlink" href="#24313" title="Permanent link">&para;</a></h3>
+<h4 id="new-improved_18">New + Improved<a class="headerlink" href="#new-improved_18" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Add tender line item should allow for tender specific properties without requiring base changes (JMC-4355)</li>
+</ul>
+<h4 id="fixed_26">Fixed<a class="headerlink" href="#fixed_26" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Aurus DCC (Dynamic Currency Conversion) is not working (JMC-4911)</li>
+<li>Currency Text Component doesn't react to locale changes (JMC-4891)</li>
+<li>Dynamic logout buttons cannot be disabled.  They can only be removed. (JMC-4913)</li>
+<li>JMC hangs at promotion calculation when the reward is super small (in this case $0.01) (JMC-4820)</li>
+<li>JPOS scanners sometimes fail to initialize.  Try several times at startup to connect.   Also reinitialize when an error event is received (JMC-4930)</li>
+<li>PRICE_TOTAL rewards best deal can be inconsistent (JMC-4927)</li>
+<li>Returns | Search by card should use token if available (JMC-4696)</li>
+<li>Symmetric | Registers fail to update due to 500 error (JMC-4505)</li>
+<li>Voids that are canceled do not allowed the tender line items to stay on the transaction (JMC-4846)</li>
+</ul>
+<h3 id="24312">243.1.2<a class="headerlink" href="#24312" title="Permanent link">&para;</a></h3>
+<h4 id="new-improved_19">New + Improved<a class="headerlink" href="#new-improved_19" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Add validation pattern configuration for Employee Discount prompt (COM-330)</li>
+<li>Allow for a tax group override on a tagged item options record (JMC-4613)</li>
+</ul>
+<h4 id="fixed_27">Fixed<a class="headerlink" href="#fixed_27" title="Permanent link">&para;</a></h4>
+<ul>
+<li>TenderReturnPoliciesEndpoint does redundant requests for original transactions (JMC-4726)</li>
+</ul>
+<h3 id="24311">243.1.1<a class="headerlink" href="#24311" title="Permanent link">&para;</a></h3>
+<h4 id="new-improved_20">New + Improved<a class="headerlink" href="#new-improved_20" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Add endpoint to get the default e-receipt email address displayed to the cashier (JMC-4755)</li>
+</ul>
+<h4 id="fixed_28">Fixed<a class="headerlink" href="#fixed_28" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Charity Donation | Adding a Round Up from the 'Order Tender' screen, associates the round up with the order (JMC-4623)</li>
+<li>E-Receipts - When customer wishes to have an email receipt BUT the transaction includes store copies of receipts those are not printing out. (JMC-4322)</li>
+<li>Discount on non-receipted return item does not work (JMC-4735)</li>
+</ul>
+<h4 id="upgrade-considerations_6">Upgrade Considerations<a class="headerlink" href="#upgrade-considerations_6" title="Permanent link">&para;</a></h4>
+<ul>
+<li>The new endpoint for getting the default email address value is (HTTP GET) /transmgmt/eReceiptDefaultEmail  located in ITransMgmtService.getEreceiptDefaultEmail(). Retailers can override this endpoint if they want to diverge from the default base commerce logic.  Default logic is:The logic above is the same as it has been prior to this release.  The logic has just been moved into this new endpoint to better support customization.  (JMC-4755)</li>
+</ul>
+<h3 id="24310">243.1.0<a class="headerlink" href="#24310" title="Permanent link">&para;</a></h3>
+<h4 id="new-improved_21">New + Improved<a class="headerlink" href="#new-improved_21" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Add support for creating loyalty promotions on the fly from GetPromoCodesEndpoint (JMC-4681)</li>
+<li>Allow addNewCustomer from Customer Results for POS or Customer Display (JMC-4461)</li>
+<li>CustomerModel should support a customers country of origin or nationality (JMC-4465)</li>
+<li>CustomerModel should support a customers preferred language/locale (JMC-4463)</li>
+<li>Enable Biometric support (JMC-3481)</li>
+<li>No image image should be configured to appear when no image is assigned (JMC-4525)</li>
+<li>Self-Checkout RFID Box Integration (JMC-4010)</li>
+<li>Tender Line Item should support extended models to store data for custom tenders (JMC-4677)</li>
+</ul>
+<h4 id="fixed_29">Fixed<a class="headerlink" href="#fixed_29" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Payment Device | Aurus pinpad displays "Transaction Complete" message after a decline (JMC-4188)</li>
+<li>ReturnsWhen linking by loyalty the wrong transaction is linked (JMC-4963)</li>
+<li>Three decimal currency adds zero when a decimal is typed (JMC-4532)</li>
+</ul>
+<h4 id="upgrade-considerations_7">Upgrade Considerations<a class="headerlink" href="#upgrade-considerations_7" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Customer Search Results will now be configurable to show a button to allow an associate to start the add new customer flow whenever a search result is found instead of just when the customer searches for their loyalty information by enabling openpos.customer.add.allowAddCustomerIfExistingIsFound. This changes the existing behavior that requires this flag to be enabled AND for the customer to have initiated the search.  (JMC-4461)</li>
+<li>Customer forms now support adding nationality as a COMBO form field type.Nationality is a dropdown of countries that are sourced from ctx_country.  (JMC-4465)</li>
+<li>Customer forms now support adding preferredLanguage as a COMBO form field type.Supported languages are configured in the ctx_language table with tags to change which languages can be used in specific scenarios.  (JMC-4463)</li>
+</ul>
+<h2 id="promote">Promote<a class="headerlink" href="#promote" title="Permanent link">&para;</a></h2>
+<h3 id="24314_1">243.1.4<a class="headerlink" href="#24314_1" title="Permanent link">&para;</a></h3>
+<h4 id="fixed_30">Fixed<a class="headerlink" href="#fixed_30" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Editing a promotion with promo codes can cause the promotion to previous revision of the promotion to NOT be archived due to a race condition (JMC-4979)</li>
+<li>If the server dies while generating codes, then we need a way to recover that promotion.   Allow the promotion to be recalled while in that status (JMC-4981)</li>
+<li>Promote allowed a promotion to be published without a RHS of an item attribute that was added and resulted in a null pointer exception during publishing (JMC-4861)</li>
+</ul>
+<h4 id="upgrade-considerations_8">Upgrade Considerations<a class="headerlink" href="#upgrade-considerations_8" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Additional server-side validation rule added to commerce-central-server/src/main/resources/data/jmcc_svr/startup/post_01_jmcc-prm-validation-rule.csv (supplements new front-end validation):Same location as other promotion validation rules, such as "Rewards Misconfigured" and "No Qualifying Conditions".   (JMC-4861)</li>
+</ul>
+<h3 id="24311_1">243.1.1<a class="headerlink" href="#24311_1" title="Permanent link">&para;</a></h3>
+<h4 id="fixed_31">Fixed<a class="headerlink" href="#fixed_31" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Promote | Editing a published promo with coupon codes sometimes fails to archive the old promo (JMC-4756)</li>
+<li>Promote | start date / release date is not reassigned on promo code reassign (JMC-4762)</li>
+</ul>
+<h2 id="retail-core-shared-core-by-store-applications">Retail Core (Shared core by store applications)<a class="headerlink" href="#retail-core-shared-core-by-store-applications" title="Permanent link">&para;</a></h2>
+<h3 id="243115_1">243.1.15<a class="headerlink" href="#243115_1" title="Permanent link">&para;</a></h3>
+<h4 id="security_3">Security<a class="headerlink" href="#security_3" title="Permanent link">&para;</a></h4>
+<ul>
+<li>(CVE-2024-7254StackOverflow vulnerability in Protocol Buffers)</li>
+</ul>
+<h3 id="243112_1">243.1.12<a class="headerlink" href="#243112_1" title="Permanent link">&para;</a></h3>
+<h4 id="security_4">Security<a class="headerlink" href="#security_4" title="Permanent link">&para;</a></h4>
+<ul>
+<li>(CVE-2024-45491: libexpat: Integer Overflow or Wraparound)</li>
+<li>(CVE-2024-45492: libexpat: integer overflow)</li>
+<li>(CVE-2024-4590: libexpatNegative Length Parsing Vulnerability)</li>
+</ul>
+<h3 id="243110_1">243.1.10<a class="headerlink" href="#243110_1" title="Permanent link">&para;</a></h3>
+<h4 id="new-improved_22">New + Improved<a class="headerlink" href="#new-improved_22" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Technical Enhancement | Create "transaction publisher" microservice (JMC-5223)</li>
+</ul>
+<h3 id="24314_2">243.1.4<a class="headerlink" href="#24314_2" title="Permanent link">&para;</a></h3>
+<h4 id="new-improved_23">New + Improved<a class="headerlink" href="#new-improved_23" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Turn off registration.auto.create.group.link in SymmetricDS's base configuration (JMC-4948)</li>
+</ul>
+<h3 id="24311_2">243.1.1<a class="headerlink" href="#24311_2" title="Permanent link">&para;</a></h3>
+<h4 id="new-improved_24">New + Improved<a class="headerlink" href="#new-improved_24" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Remove foreign keys from SymmetricDS for the embedded version.  They have caused issues in the past when doing rollout testing by restoring CORP to an older database. (JMC-3971)</li>
+</ul>
+<h3 id="243100">243.10.0<a class="headerlink" href="#243100" title="Permanent link">&para;</a></h3>
+<h4 id="new-improved_25">New + Improved<a class="headerlink" href="#new-improved_25" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Helm Chart | Change Inventory and Clienteling from a <code>StatefulSet</code> resource to a <code>Deployment</code> resource (COM-144)</li>
+</ul>
+<h4 id="security_5">Security<a class="headerlink" href="#security_5" title="Permanent link">&para;</a></h4>
+<ul>
+<li>(CVE-2024-7254StackOverflow vulnerability in Protocol Buffers)</li>
+</ul>
+<h2 id="unified-promotion-engine">Unified Promotion Engine<a class="headerlink" href="#unified-promotion-engine" title="Permanent link">&para;</a></h2>
+<h3 id="243117_1">243.1.17<a class="headerlink" href="#243117_1" title="Permanent link">&para;</a></h3>
+<h4 id="fixed_32">Fixed<a class="headerlink" href="#fixed_32" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Unified Promotion Engine | UPE is finding expired coupon items when there are multiple rows in itm_assigned_item, some of which were expired (JMC-5775)</li>
+</ul>
+<h3 id="24313_1">243.1.3<a class="headerlink" href="#24313_1" title="Permanent link">&para;</a></h3>
+<h4 id="new-improved_26">New + Improved<a class="headerlink" href="#new-improved_26" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Add support for AMT_TOTAL qualification promotions with a QUAL_ITEMS_REWARD_PREFERENCE of REQUIRED to include all qualifying items as the REWARD (JMC-4860)</li>
+</ul>
+<h3 id="24311_3">243.1.1<a class="headerlink" href="#24311_3" title="Permanent link">&para;</a></h3>
+<h4 id="fixed_33">Fixed<a class="headerlink" href="#fixed_33" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Effective date is not being passed when doing the promo code lookup in the Unified Promotion Service (JMC-4761)</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["search.suggest"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+
+<!-- Mirrored from commerce-docs.jumpmind.com/Releases/ReleaseNotes - 243.1.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 06 Feb 2026 13:25:02 GMT -->
+</html>

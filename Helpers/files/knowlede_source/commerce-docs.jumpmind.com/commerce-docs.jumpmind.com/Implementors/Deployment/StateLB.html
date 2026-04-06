@@ -1,0 +1,2416 @@
+
+<!DOCTYPE html>
+
+<html class="no-js" lang="en">
+
+<!-- Mirrored from commerce-docs.jumpmind.com/Implementors/Deployment/StateLB.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 06 Feb 2026 13:20:55 GMT -->
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<link href="Helm_Values.html" rel="prev"/>
+<link href="../Inventory/Inventory.html" rel="next"/>
+<link href="../../assets/images/favicon.png" rel="icon"/>
+<meta content="mkdocs-1.6.1, mkdocs-material-9.7.1" name="generator"/>
+<title>StateLB - Documentation</title>
+<link href="../../assets/stylesheets/main.484c7ddc.min.css" rel="stylesheet"/>
+<script src="https://unpkg.com/iframe-worker/shim"></script>
+<link crossorigin="" href="https://fonts.gstatic.com/" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback" rel="stylesheet"/>
+<style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+<link href="../../Resources/Style.css" rel="stylesheet"/>
+<script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+</head>
+<body dir="ltr">
+<input autocomplete="off" class="md-toggle" data-md-toggle="drawer" id="__drawer" type="checkbox"/>
+<input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
+<label class="md-overlay" for="__drawer"></label>
+<div data-md-component="skip">
+<a class="md-skip" href="#statelb">
+          Skip to content
+        </a>
+</div>
+<div data-md-component="announce">
+</div>
+<header class="md-header md-header--shadow" data-md-component="header">
+<nav aria-label="Header" class="md-header__inner md-grid">
+<a aria-label="Documentation" class="md-header__button md-logo" data-md-component="logo" href="../../index.html" title="Documentation">
+<img alt="logo" src="../../Resources/jumpmind_commerce_logo_white.png"/>
+</a>
+<label class="md-header__button md-icon" for="__drawer">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"></path></svg>
+</label>
+<div class="md-header__title" data-md-component="header-title">
+<div class="md-header__ellipsis">
+<div class="md-header__topic">
+<span class="md-ellipsis">
+            Documentation
+          </span>
+</div>
+<div class="md-header__topic" data-md-component="header-topic">
+<span class="md-ellipsis">
+            
+              StateLB
+            
+          </span>
+</div>
+</div>
+</div>
+<script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+<label class="md-header__button md-icon" for="__search">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+</label>
+<div class="md-search" data-md-component="search" role="dialog">
+<label class="md-search__overlay" for="__search"></label>
+<div class="md-search__inner" role="search">
+<form class="md-search__form" name="search">
+<input aria-label="Search" autocapitalize="off" autocomplete="off" autocorrect="off" class="md-search__input" data-md-component="search-query" name="query" placeholder="Search" required="" spellcheck="false" type="text"/>
+<label class="md-search__icon md-icon" for="__search">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
+</label>
+<nav aria-label="Search" class="md-search__options">
+<button aria-label="Clear" class="md-search__icon md-icon" tabindex="-1" title="Clear" type="reset">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+</button>
+</nav>
+<div class="md-search__suggest" data-md-component="search-suggest"></div>
+</form>
+<div class="md-search__output">
+<div class="md-search__scrollwrap" data-md-scrollfix="" tabindex="0">
+<div class="md-search-result" data-md-component="search-result">
+<div class="md-search-result__meta">
+            Initializing search
+          </div>
+<ol class="md-search-result__list" role="presentation"></ol>
+</div>
+</div>
+</div>
+</div>
+</div>
+</nav>
+</header>
+<div class="md-container" data-md-component="container">
+<main class="md-main" data-md-component="main">
+<div class="md-main__inner md-grid">
+<div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="Navigation" class="md-nav md-nav--primary" data-md-level="0">
+<label class="md-nav__title" for="__drawer">
+<a aria-label="Documentation" class="md-nav__button md-logo" data-md-component="logo" href="../../index.html" title="Documentation">
+<img alt="logo" src="../../Resources/jumpmind_commerce_logo_white.png"/>
+</a>
+    Documentation
+  </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--active md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" id="__nav_1" type="checkbox"/>
+<label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+<span class="md-ellipsis">
+    
+  
+    Implementors
+  
+
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="true" aria-labelledby="__nav_1_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_1">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    Implementors
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../GettingStarted.html">
+<span class="md-ellipsis">
+    
+  
+    Getting Started
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_1_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_1_2" id="__nav_1_2_label" tabindex="0">
+<span class="md-ellipsis">
+    
+  
+    Extending
+  
+
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_1_2_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_1_2">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    Extending
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../Extending/Overview.html">
+<span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../Extending/MicroserviceEndpoints.html">
+<span class="md-ellipsis">
+    
+  
+    Microservice Endpoints
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../Extending/StateFlowOverrides.html">
+<span class="md-ellipsis">
+    
+  
+    State and Flow Overrides
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../Extending/StateBeans.html">
+<span class="md-ellipsis">
+    
+  
+    State Beans
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../Extending/ScreenBuilders.html">
+<span class="md-ellipsis">
+    
+  
+    Screen Builders
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../Extending/Finalizers.html">
+<span class="md-ellipsis">
+    
+  
+    Finalizers
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../Extending/ContentProviders.html">
+<span class="md-ellipsis">
+    
+  
+    Content Providers
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../Extending/TypeCodes.html">
+<span class="md-ellipsis">
+    
+  
+    TypeCodes
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../Extending/NewTenderTypes.html">
+<span class="md-ellipsis">
+    
+  
+    New Tender Types
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../Extending/RequiredItemActions.html">
+<span class="md-ellipsis">
+    
+  
+    Required Item Actions
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../Extending/MicroCapabilities.html">
+<span class="md-ellipsis">
+    
+  
+    Micro Capabilities
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../Extending/AndroidExtensionLibrary.html">
+<span class="md-ellipsis">
+    
+  
+    Android Extension Library
+  
+
+    
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--active md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" id="__nav_1_3" type="checkbox"/>
+<label class="md-nav__link" for="__nav_1_3" id="__nav_1_3_label" tabindex="0">
+<span class="md-ellipsis">
+    
+  
+    Deployment
+  
+
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="true" aria-labelledby="__nav_1_3_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_1_3">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    Deployment
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="Personalization/Personalization.html">
+<span class="md-ellipsis">
+    
+  
+    Personalization
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="SSL/SSL.html">
+<span class="md-ellipsis">
+    
+  
+    SSL
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="manual-store-installation.html">
+<span class="md-ellipsis">
+    
+  
+    Manual Store Installation
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="CommerceContainer.html">
+<span class="md-ellipsis">
+    
+  
+    Containers
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="Kubernetes.html">
+<span class="md-ellipsis">
+    
+  
+    Kubernetes
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="Helm_Values.html">
+<span class="md-ellipsis">
+    
+  
+    Helm Values
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item md-nav__item--active">
+<input class="md-nav__toggle md-toggle" id="__toc" type="checkbox"/>
+<a class="md-nav__link md-nav__link--active" href="StateLB.html">
+<span class="md-ellipsis">
+    
+  
+    StateLB
+  
+
+    
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_1_4" type="checkbox"/>
+<label class="md-nav__link" for="__nav_1_4" id="__nav_1_4_label" tabindex="0">
+<span class="md-ellipsis">
+    
+  
+    Inventory
+  
+
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_1_4_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_1_4">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    Inventory
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../Inventory/Inventory.html">
+<span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../Inventory/Adjustments.html">
+<span class="md-ellipsis">
+    
+  
+    Adjustments
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../Inventory/StoreCounts.html">
+<span class="md-ellipsis">
+    
+  
+    Store Counts
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../Inventory/Receiving.html">
+<span class="md-ellipsis">
+    
+  
+    Receiving
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../Inventory/Shipping.html">
+<span class="md-ellipsis">
+    
+  
+    Shipping
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../Inventory/TicketPrinting.html">
+<span class="md-ellipsis">
+    
+  
+    Ticket Printing
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../Inventory/API.html">
+<span class="md-ellipsis">
+    
+  
+    API
+  
+
+    
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../micro-cap-clienteling.html">
+<span class="md-ellipsis">
+    
+  
+    Clienteling
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../micro-cap-shopkeeper-implementation.html">
+<span class="md-ellipsis">
+    
+  
+    Shopkeeper
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../Peripherals/Peripherals.html">
+<span class="md-ellipsis">
+    
+  
+    Peripherals
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../Publisher.html">
+<span class="md-ellipsis">
+    
+  
+    Publisher
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../PublisherDeprecated.html">
+<span class="md-ellipsis">
+    
+  
+    Publishers (Deprecated)
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_1_10" type="checkbox"/>
+<label class="md-nav__link" for="__nav_1_10" id="__nav_1_10_label" tabindex="0">
+<span class="md-ellipsis">
+    
+  
+    Integration
+  
+
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_1_10_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_1_10">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    Integration
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../IntegrationUserGuide/integrationUserGuide.html">
+<span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../IntegrationUserGuide/order-fulfillment.html">
+<span class="md-ellipsis">
+    
+  
+    Order Fulfillment
+  
+
+    
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../DataModel.html">
+<span class="md-ellipsis">
+    
+  
+    Data Model
+  
+
+    
+      <br/>
+<small>Data Model</small>
+</span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../ConfigurationGuide.html">
+<span class="md-ellipsis">
+    
+  
+    Configuration Guide
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../LoyaltyCustomer.html">
+<span class="md-ellipsis">
+    
+  
+    Loyalty Customer
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../Developers/pos-api.html">
+<span class="md-ellipsis">
+    
+  
+    Point of Sales API
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../QuickLoaderDocs.html">
+<span class="md-ellipsis">
+    
+  
+    Quick Loader
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_1_16" type="checkbox"/>
+<label class="md-nav__link" for="__nav_1_16" id="__nav_1_16_label" tabindex="0">
+<span class="md-ellipsis">
+    
+  
+    Logging and Telemetry
+  
+
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_1_16_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_1_16">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    Logging and Telemetry
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../LoggingAndTelemetry/logging-and-telemetry.html">
+<span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../LoggingAndTelemetry/Database/database-logging.html">
+<span class="md-ellipsis">
+    
+  
+    Database
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../LoggingAndTelemetry/Logging/application-logging.html">
+<span class="md-ellipsis">
+    
+  
+    Logging
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../LoggingAndTelemetry/ServiceSampling/service-sampling.html">
+<span class="md-ellipsis">
+    
+  
+    Service Sampling
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../LoggingAndTelemetry/Telemetry/open-telemetry.html">
+<span class="md-ellipsis">
+    
+  
+    Telemetry
+  
+
+    
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_1_17" type="checkbox"/>
+<label class="md-nav__link" for="__nav_1_17" id="__nav_1_17_label" tabindex="0">
+<span class="md-ellipsis">
+    
+  
+    Forms
+  
+
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_1_17_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_1_17">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    Forms
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../Forms/Forms.html">
+<span class="md-ellipsis">
+    
+  
+    Forms
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../Forms/AddressAutoCompleteSetupGuide.html">
+<span class="md-ellipsis">
+    
+  
+    Address Auto Complete Setup
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../Forms/EmailValidationSetupGuide.html">
+<span class="md-ellipsis">
+    
+  
+    Email Validation Setup
+  
+
+    
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../Tenders.html">
+<span class="md-ellipsis">
+    
+  
+    Tenders
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../VatRefund.html">
+<span class="md-ellipsis">
+    
+  
+    VAT Refunds
+  
+
+    
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+<span class="md-ellipsis">
+    
+  
+    Functional
+  
+
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_2_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_2">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    Functional
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../Functional/Customer/Loyalty/LoyaltyFormConfiguration.html">
+<span class="md-ellipsis">
+    
+  
+    Customer Loyalty
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../Functional/Device%20Identity/IDP_API-external.html">
+<span class="md-ellipsis">
+    
+  
+    Device Identity
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_2_3" type="checkbox"/>
+<label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+<span class="md-ellipsis">
+    
+  
+    Daily Operations
+  
+
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_2_3_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_2_3">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    Daily Operations
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../Functional/Daily%20Operations/Daily%20Operations.html">
+<span class="md-ellipsis">
+    
+  
+    Daily Operations
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../Functional/Daily%20Operations/Daily%20Operations_CashUp_CashDown.html">
+<span class="md-ellipsis">
+    
+  
+    CashUp and CashDown
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../Functional/Daily%20Operations/Daily%20Operations_NoSale.html">
+<span class="md-ellipsis">
+    
+  
+    NoSale
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../Functional/Daily%20Operations/Daily%20Operations_Open_Close.html">
+<span class="md-ellipsis">
+    
+  
+    Open and Closed
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../Functional/Daily%20Operations/Daily%20Operations_PayIn_PayOut.html">
+<span class="md-ellipsis">
+    
+  
+    PayIn and PayOut
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../Functional/Daily%20Operations/Daily%20Operations_Post_Void.html">
+<span class="md-ellipsis">
+    
+  
+    Post Void
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../Functional/Daily%20Operations/Daily%20Operations_Reports.html">
+<span class="md-ellipsis">
+    
+  
+    Reports
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../Functional/Daily%20Operations/Daily%20Operations_Till_Management.html">
+<span class="md-ellipsis">
+    
+  
+    Operations till Management
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../Functional/Training%20Mode/Training%20Mode.html">
+<span class="md-ellipsis">
+    
+  
+    Training Mode
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../Functional/Transaction%20Search/Transaction%20Search.html">
+<span class="md-ellipsis">
+    
+  
+    Transaction Search
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../Functional/User%20Management/User%20Management.html">
+<span class="md-ellipsis">
+    
+  
+    User Management
+  
+
+    
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../Functional/Product/Item%20Inquiry/Item%20Inquiry.html">
+<span class="md-ellipsis">
+    
+  
+    Item Inquiry
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_2_5" type="checkbox"/>
+<label class="md-nav__link" for="__nav_2_5" id="__nav_2_5_label" tabindex="0">
+<span class="md-ellipsis">
+    
+  
+    Product Inquiry
+  
+
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_2_5_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_2_5">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    Product Inquiry
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../Functional/Product/Product%20Inquiry/ProductInquiry.html">
+<span class="md-ellipsis">
+    
+  
+    Implementation
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../Functional/Product/Product%20Inquiry/ProductInquiryMigrationGuide.html">
+<span class="md-ellipsis">
+    
+  
+    Migration to Product Inquiry from Item Inquiry
+  
+
+    
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_2_6" type="checkbox"/>
+<label class="md-nav__link" for="__nav_2_6" id="__nav_2_6_label" tabindex="0">
+<span class="md-ellipsis">
+    
+  
+    Orders
+  
+
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_2_6_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_2_6">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    Orders
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../Functional/Omni-Channel/Orders/DeliveryOrders.html">
+<span class="md-ellipsis">
+    
+  
+    DeliveryOrders
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../Functional/Omni-Channel/Orders/PickupOrders.html">
+<span class="md-ellipsis">
+    
+  
+    PickupOrders
+  
+
+    
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_2_7" type="checkbox"/>
+<label class="md-nav__link" for="__nav_2_7" id="__nav_2_7_label" tabindex="0">
+<span class="md-ellipsis">
+    
+  
+    Payment
+  
+
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_2_7_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_2_7">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    Payment
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../Functional/Payment/Credit/ACI/ACI%20Development%20Info.html">
+<span class="md-ellipsis">
+    
+  
+    ACI
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../Functional/Payment/Credit/Adyen/adyen.html">
+<span class="md-ellipsis">
+    
+  
+    Adyen
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../Functional/Payment/Credit/NCR/index.html">
+<span class="md-ellipsis">
+    
+  
+    NCR
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../Functional/Payment/Credit/Aurus/aurus.html">
+<span class="md-ellipsis">
+    
+  
+    Aurus
+  
+
+    
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_2_8" type="checkbox"/>
+<label class="md-nav__link" for="__nav_2_8" id="__nav_2_8_label" tabindex="0">
+<span class="md-ellipsis">
+    
+  
+    Pricing and Promotions
+  
+
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_2_8_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_2_8">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    Pricing and Promotions
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../Functional/Pricing%20and%20Promotions/Promotions.html">
+<span class="md-ellipsis">
+    
+  
+    Promotions
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../Functional/Pricing%20and%20Promotions/Bounce_Back_Coupons.html">
+<span class="md-ellipsis">
+    
+  
+    Bounce Back Coupons
+  
+
+    
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../Functional/Receipts%20and%20Reports/Receipts/Receipts.html">
+<span class="md-ellipsis">
+    
+  
+    Receipts and Reports
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../Functional/Returns%20Management/Returns%20Management.html">
+<span class="md-ellipsis">
+    
+  
+    Returns Management
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_2_11" type="checkbox"/>
+<label class="md-nav__link" for="__nav_2_11" id="__nav_2_11_label" tabindex="0">
+<span class="md-ellipsis">
+    
+  
+    Sales
+  
+
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_2_11_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_2_11">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    Sales
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../Functional/Sales/Sales.html">
+<span class="md-ellipsis">
+    
+  
+    Sales
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../Functional/Sales/Sales_Cancel.html">
+<span class="md-ellipsis">
+    
+  
+    Cancel
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../Functional/Sales/Sales_Custom_Items.html">
+<span class="md-ellipsis">
+    
+  
+    Custom items
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../Functional/Sales/Sales_Discount_Coupons.html">
+<span class="md-ellipsis">
+    
+  
+    Discount Coupons
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../Functional/Sales/Sales_Donations.html">
+<span class="md-ellipsis">
+    
+  
+    Donations
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../Functional/Sales/Sales_GiftCards.html">
+<span class="md-ellipsis">
+    
+  
+    Gift Cards
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../Functional/Sales/Sales_Price_Override.html">
+<span class="md-ellipsis">
+    
+  
+    Price Override
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../Functional/Sales/Sales_Screen_Intro.html">
+<span class="md-ellipsis">
+    
+  
+    Screen Intro
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../Functional/Sales/Sales_Suspend_Resume.html">
+<span class="md-ellipsis">
+    
+  
+    Suspend Resume
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../Functional/Sales/Sales_Tax_Exempt.html">
+<span class="md-ellipsis">
+    
+  
+    Tax Exempt
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../Functional/Sales/Sales_TaxGroup_ItemExemption.html">
+<span class="md-ellipsis">
+    
+  
+    Tax Group Item Exemption
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../Functional/Sales/Sales_TaxOverride.html">
+<span class="md-ellipsis">
+    
+  
+    Tax Override
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../Functional/Sales/Transaction%20Operations.html">
+<span class="md-ellipsis">
+    
+  
+    Transaction Operations
+  
+
+    
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_2_12" type="checkbox"/>
+<label class="md-nav__link" for="__nav_2_12" id="__nav_2_12_label" tabindex="0">
+<span class="md-ellipsis">
+    
+  
+    Tax
+  
+
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_2_12_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_2_12">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    Tax
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../Functional/Tax/ItemGroup_Tax_Exemptions.html">
+<span class="md-ellipsis">
+    
+  
+    ItemGroup Exemptions
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../Functional/Tax/Tax.html">
+<span class="md-ellipsis">
+    
+  
+    Tax
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../Functional/Tax/Transaction_TaxRateOverride.html">
+<span class="md-ellipsis">
+    
+  
+    TaxRateOverride
+  
+
+    
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../Functional/Tendering/Tendering.html">
+<span class="md-ellipsis">
+    
+  
+    Tendering
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_2_14" type="checkbox"/>
+<label class="md-nav__link" for="__nav_2_14" id="__nav_2_14_label" tabindex="0">
+<span class="md-ellipsis">
+    
+  
+    Clienteling
+  
+
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_2_14_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_2_14">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    Clienteling
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../Functional/Clienteling/Appointments.html">
+<span class="md-ellipsis">
+    
+  
+    Appointments
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../Functional/Clienteling/Consultation.html">
+<span class="md-ellipsis">
+    
+  
+    Consultation
+  
+
+    
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+<span class="md-ellipsis">
+    
+  
+    Developers
+  
+
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_3_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_3">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    Developers
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../Developers/developer-faq.html">
+<span class="md-ellipsis">
+    
+  
+    FAQ
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../Developers/developer-setup.html">
+<span class="md-ellipsis">
+    
+  
+    Setup
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../Developers/Flows/flows.html">
+<span class="md-ellipsis">
+    
+  
+    Choreographer (Flows)
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../Developers/Flows/state-beans.html">
+<span class="md-ellipsis">
+    
+  
+    State Beans
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../Developers/Incidents%20and%20Errors/incidents.html">
+<span class="md-ellipsis">
+    
+  
+    Incidents and Errors
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../Developers/Micro%20Capabilities/micro-caps.html">
+<span class="md-ellipsis">
+    
+  
+    Micro Capabilities
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../Developers/Microservices/microservices.html">
+<span class="md-ellipsis">
+    
+  
+    Microservices
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../Developers/Persistence%20Layer/openpos-persist.html">
+<span class="md-ellipsis">
+    
+  
+    Persistence Layer
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../Developers/micro-cap-shopkeeper-dev.html">
+<span class="md-ellipsis">
+    
+  
+    Shopkeeper
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_10" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3_10" id="__nav_3_10_label" tabindex="0">
+<span class="md-ellipsis">
+    
+  
+    Naming Conventions
+  
+
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_3_10_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_3_10">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    Naming Conventions
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../Developers/Resources/Resource%20Bundling%20Naming%20Conventions.html">
+<span class="md-ellipsis">
+    
+  
+    Resource Bundles
+  
+
+    
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_11" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3_11" id="__nav_3_11_label" tabindex="0">
+<span class="md-ellipsis">
+    
+  
+    Device Identity (IDP)
+  
+
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_3_11_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_3_11">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    Device Identity (IDP)
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../Developers/IDP/1-IDP_API.html">
+<span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../Developers/IDP/2-IDP_Server_Implementation.html">
+<span class="md-ellipsis">
+    
+  
+    Server Implementation
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_11_3" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3_11_3" id="__nav_3_11_3_label" tabindex="0">
+<span class="md-ellipsis">
+    
+  
+    Client Implementation
+  
+
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_3_11_3_label" class="md-nav" data-md-level="3">
+<label class="md-nav__title" for="__nav_3_11_3">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    Client Implementation
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../Developers/IDP/3-IDP_Client_v1_Implementation.html">
+<span class="md-ellipsis">
+    
+  
+    Version 1
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../Developers/IDP/4-IDP_Client_v2_Implementation.html">
+<span class="md-ellipsis">
+    
+  
+    Version 2
+  
+
+    
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../Developers/IDP/5-IDP_Developer_Setup.html">
+<span class="md-ellipsis">
+    
+  
+    Developer Setup
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../Developers/IDP/6-IDP_Client_Assertion.html">
+<span class="md-ellipsis">
+    
+  
+    Client Assertion
+  
+
+    
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../Developers/support.html">
+<span class="md-ellipsis">
+    
+  
+    Support
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_5" type="checkbox"/>
+<label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+<span class="md-ellipsis">
+    
+  
+    Releases
+  
+
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_5_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_5">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    Releases
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../Releases/ReleaseStrategy.html">
+<span class="md-ellipsis">
+    
+  
+    Release Cycle
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_5_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_5_2" id="__nav_5_2_label" tabindex="0">
+<span class="md-ellipsis">
+    
+  
+    Release Notes
+  
+
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_5_2_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_5_2">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    Release Notes
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../Releases/ReleaseNotes%20-%20250.1.html">
+<span class="md-ellipsis">
+    
+  
+    250.1
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../Releases/ReleaseNotes%20-%20250.0.html">
+<span class="md-ellipsis">
+    
+  
+    250.0
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../Releases/ReleaseNotes%20-%20243.10.html">
+<span class="md-ellipsis">
+    
+  
+    243.10
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../Releases/ReleaseNotes%20-%20243.9.html">
+<span class="md-ellipsis">
+    
+  
+    243.9
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../Releases/ReleaseNotes%20-%20243.8.html">
+<span class="md-ellipsis">
+    
+  
+    243.8
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../Releases/ReleaseNotes%20-%20243.7.html">
+<span class="md-ellipsis">
+    
+  
+    243.7
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../Releases/ReleaseNotes%20-%20243.6.html">
+<span class="md-ellipsis">
+    
+  
+    243.6
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../Releases/ReleaseNotes%20-%20243.5.html">
+<span class="md-ellipsis">
+    
+  
+    243.5
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../Releases/ReleaseNotes%20-%20243.4.html">
+<span class="md-ellipsis">
+    
+  
+    243.4
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../Releases/ReleaseNotes%20-%20243.3.html">
+<span class="md-ellipsis">
+    
+  
+    243.3
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../Releases/ReleaseNotes%20-%20243.2.html">
+<span class="md-ellipsis">
+    
+  
+    243.2
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../Releases/ReleaseNotes%20-%20243.1.html">
+<span class="md-ellipsis">
+    
+  
+    243.1
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../Releases/ReleaseNotes%20-%20243.0.html">
+<span class="md-ellipsis">
+    
+  
+    243.0
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../Releases/ReleaseNotes%20-%20242.1.html">
+<span class="md-ellipsis">
+    
+  
+    242.1
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../Releases/ReleaseNotes%20-%20242.0.html">
+<span class="md-ellipsis">
+    
+  
+    242.0
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../Releases/ReleaseNotes%20-%20241.0.html">
+<span class="md-ellipsis">
+    
+  
+    241.0
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../Releases/ReleaseNotes%20-%20232.0.html">
+<span class="md-ellipsis">
+    
+  
+    232.0
+  
+
+    
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="Table of contents" class="md-nav md-nav--secondary">
+</nav>
+</div>
+</div>
+</div>
+<div class="md-content" data-md-component="content">
+<article class="md-content__inner md-typeset">
+<h1 id="statelb">StateLB<a class="headerlink" href="#statelb" title="Permanent link">¶</a></h1>
+<p>In some installations of Jumpmind Commerce products, you might need to serve a stateful connection to many different stores from a single server. This is common in failover, thin deployments, and microcapabilities. As more and more stores have a live connection to the server, the server will see increased load and eventually reach a point of service degradation.</p>
+<p>For operations staff, it will be desirable to horizontally scale the Commerce server by introducing multiple replicas of the server and allow the load balancer to distribute the load to each of the replicas. However, since the connection is stateful, this may lead to undesirable effects, such as the client device having to reconnect which will likely have it reconnect to a different server and its state is lost. The obvious solution is to enable session affinity/sticky sessions with the load balancer implementation, however, there are some non-obvious problems that will still exist in the system. Typical implementations of session affinity in load balancers is cookie based. A cookie is issued by the load balancer and the browser continues to send that cookie with every request. The cookie describes the server to route to. Microcapability applications are likely to be served from a different host, and for security reasons, the browser will not allow the cookie to be sent to a separate host and its difficult to impossible to chance the security constraints on the cookie in most load balancer implementations. Additionally, for the main Point-of-Sale application, when there is a CX Connect device expected, both of the client connections must be made to the same server. When a load balancer routes with session affinity, it does not understand this behavior, so it continues to route at random and thus it is unlikely for both the CX Connect and Point-of-Sale to connect to the same server.</p>
+<p>To assist with these limitations, Jumpmind offers a lightweight L7 proxy that you deploy in-line with your existing load balancer and Jumpmind Commerce applications. The proxy is stateless and understands the stateful portions of Jumpmind Commerce applications to provide session affinity. While designed as a Kubernetes native application, it can also be run on its own with both static and service discovery options. Additionally, since the proxy is stateless, it itself can horizontally scale without limitations in addition to allowing the downstream Commerce Application to scale horizontally.</p>
+<pre class="mermaid"><code>flowchart LR
+  client["Client"] --&gt; lb["Load Balancer"]
+  lb --&gt; statelb-a["StateLB (Replica N*)"]
+  statelb-a --&gt; commerce-a["Commerce (Replica N*)"]
+</code></pre>
+<p>StateLB works by proxying HTTP and the Commerce WebSocket requests to a Commerce Server. Most commerce HTTP requests are stateless REST calls. The proxy will perform a standard round-robin distribution of these requests. Stateful requests, including the Commerce WebSocket, have the device ID supplied as part of the protocol. StateLB infers the store ID from the device ID, computes a deterministic hash of the store ID which as a result gives a deterministic ID of the targeted downstream Commerce Server. The store ID is used so that all devices from a single store are routed to the same downstream Commerce server; most importantly, CX Connect devices.</p>
+<h3 id="limitations">Limitations<a class="headerlink" href="#limitations" title="Permanent link">¶</a></h3>
+<p>Due to StateLB being a stateless solution that relies on a math formula where one of the inputs is the number of downstream Commerce Servers, it means the results of StateLB are sensitive to changes in the number of downstream Commerce servers. While a retailer should be able to get away with occasional scaling changes, even during live operation, it is not recommended to make very frequent changes to the downstream scaling like may be seen when a Horizontal Pod Autoscaler (HPA) is in use.</p>
+<h3 id="enable-with-helm">Enable with Helm<a class="headerlink" href="#enable-with-helm" title="Permanent link">¶</a></h3>
+<p>StateLB is included in the Jumpmind Commerce provided Helm Chart. A simple enabling of StateLB for expected services is all that's needed.</p>
+<p>You can review the <code>pos.loadBalancer</code>, <code>clienteling.loadBalancer</code>, and <code>inventory.loadBalancer</code> sections of the <a href="Helm_Values.html">Helm Values</a>.</p>
+<p>When a <code>&lt;app&gt;.loadBalancer.enabled</code> is <code>true</code>, a StateLB deployment is made and is configured with a downstream of the respective <code>&lt;app&gt;</code>. By default the Helm chart will use the recommended method for Kubernetes API service discovery. This requires a <code>ServiceAccount</code> and <code>Role</code> with permissions to read <code>Service</code> and <code>Endpoint</code> resources from the Kubernetes API. The Helm chart will automatically create these resources for you. However in rare circumstances where a restricted environment prevents the creation of a <code>Role</code> or <code>RoleBinding</code>, you may try using the DNS method of service discovery by setting the <code>&lt;app&gt;.loadBalancer.mode</code> to <code>dns</code>.</p>
+<p>Example Helm Values that enables StateLB for Point-of-Sale</p>
+<div class="highlight"><pre><span></span><code><span class="nt">pos</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">  </span><span class="nt">loadBalancer</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</code></pre></div>
+<h3 id="kubernetes-without-helm">Kubernetes (Without Helm)<a class="headerlink" href="#kubernetes-without-helm" title="Permanent link">¶</a></h3>
+<p>In cases where the recommended Helm Chart is not being used, you may deploy to Kubernetes by filling out the parameters applying the following resources:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1</span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ServiceAccount</span>
+<span class="nt">metadata</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">commerce-&lt;APP&gt;-statelb</span>
+
+<span class="nn">---</span>
+
+<span class="c1"># All StateLB deployments can share the same Role, only need to make once.</span>
+<span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">rbac.authorization.k8s.io/v1</span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Role</span>
+<span class="nt">metadata</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">commerce-statelb</span>
+<span class="nt">rules</span><span class="p">:</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">apiGroups</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">""</span>
+<span class="w">  </span><span class="nt">resources</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">endpoints</span>
+<span class="w">  </span><span class="nt">verbs</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">get</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">watch</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">list</span>
+
+<span class="nn">---</span>
+
+<span class="c1"># A single RoleBinding can bind to multiple ServiceAccounts which are listed under the `subjects` field.</span>
+<span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">rbac.authorization.k8s.io/v1</span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">RoleBinding</span>
+<span class="nt">metadata</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">commerce-statelb</span>
+<span class="nt">roleRef</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">apiGroup</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">rbac.authorization.k8s.io</span>
+<span class="w">  </span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Role</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">commerce-statelb</span>
+<span class="nt">subjects</span><span class="p">:</span>
+<span class="c1"># List all the ServiceAccounts for each `&lt;APP&gt;` here.</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ServiceAccount</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">commerce-&lt;APP&gt;-statelb</span>
+
+<span class="nn">---</span>
+
+<span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1</span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ConfigMap</span>
+<span class="nt">metadata</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">commerce-&lt;APP&gt;-statelb</span>
+<span class="nt">data</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">config.toml</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">    </span><span class="no">[service_discovery.kubernetes_service]</span>
+<span class="w">    </span><span class="no">name = "&lt;SERVICE_NAME_FOR_APP&gt;"</span>
+<span class="w">    </span><span class="no">port = "http"</span>
+
+<span class="w">    </span><span class="no">[route]</span>
+<span class="w">    </span><span class="no">device_affinity_prefixes = [</span>
+<span class="w">      </span><span class="no">"/api/appId/pos/deviceId",</span>
+<span class="w">      </span><span class="no">"/api/app/pos/node",</span>
+<span class="w">      </span><span class="no">"/api/app/customerdisplay/node",</span>
+<span class="w">      </span><span class="no">"/api/appId/customerdisplay/deviceId",</span>
+<span class="w">    </span><span class="no">]</span>
+
+<span class="nn">---</span>
+
+<span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">apps/v1</span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Deployment</span>
+<span class="nt">metadata</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">commerce-&lt;APP&gt;-statelb</span>
+<span class="nt">spec</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">replicas</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3</span>
+<span class="w">  </span><span class="nt">selector</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">matchLabels</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;APP&gt;-statelb</span>
+<span class="w">  </span><span class="nt">template</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">metadata</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">labels</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;APP&gt;-statelb</span>
+<span class="w">    </span><span class="nt">spec</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">automountServiceAccountToken</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">      </span><span class="nt">serviceAccountName</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">commerce-&lt;APP&gt;-statelb</span>
+<span class="w">      </span><span class="nt">containers</span><span class="p">:</span>
+<span class="w">      </span><span class="c1"># Note: Replace with location of your image and version combination</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">us-east5-docker.pkg.dev/jumpmind-customer-acme/commerce-container-virtual/statelb:243.5.0</span>
+<span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">statelb</span>
+<span class="w">        </span><span class="nt">ports</span><span class="p">:</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">containerPort</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">7900</span>
+<span class="w">          </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http</span>
+<span class="w">          </span><span class="nt">protocol</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">TCP</span>
+<span class="w">        </span><span class="nt">resources</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">requests</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">cpu</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">100m</span>
+<span class="w">            </span><span class="nt">memory</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">64Mi</span>
+<span class="w">          </span><span class="nt">limits</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">cpu</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">500m</span>
+<span class="w">            </span><span class="nt">memory</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">128Mi</span>
+<span class="w">        </span><span class="nt">volumeMounts</span><span class="p">:</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">mountPath</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/etc/config/commerce_statelb/</span>
+<span class="w">          </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">config</span>
+<span class="w">      </span><span class="nt">volumes</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">config</span>
+<span class="w">        </span><span class="nt">configMap</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">defaultMode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">420</span>
+<span class="w">          </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">commerce-&lt;APP&gt;-statelb</span>
+
+<span class="nn">---</span>
+
+<span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1</span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Service</span>
+<span class="nt">metadata</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">commerce-&lt;APP&gt;-statelb</span>
+<span class="nt">spec</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ClusterIP</span>
+<span class="w">  </span><span class="nt">selector</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;APP&gt;-statelb</span>
+<span class="w">  </span><span class="nt">ports</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http</span>
+<span class="w">    </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">80</span>
+<span class="w">    </span><span class="nt">protocol</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">TCP</span>
+<span class="w">    </span><span class="nt">targetPort</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http</span>
+</code></pre></div>
+<p>Once the StateLB service is running, you may then simply configure your existing <code>Ingress</code> that is configured with the <code>&lt;APP&gt;</code> <code>Service</code> as its downstream to instead point at the <code>commerce-&lt;APP&gt;-statelb</code> service.</p>
+</article>
+</div>
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+</div>
+</main>
+<footer class="md-footer">
+<div class="md-footer-meta md-typeset">
+<div class="md-footer-meta__inner md-grid">
+<div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" rel="noopener" target="_blank">
+      Material for MkDocs
+    </a>
+</div>
+</div>
+</div>
+</footer>
+</div>
+<div class="md-dialog" data-md-component="dialog">
+<div class="md-dialog__inner md-typeset"></div>
+</div>
+<script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["search.suggest"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+<script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+<script type="module">import mermaid from "https://unpkg.com/mermaid@10.4.0/dist/mermaid.esm.min.mjs";
+window.mermaidConfig = {default: {
+    startOnLoad: false
+}};</script></body>
+
+<!-- Mirrored from commerce-docs.jumpmind.com/Implementors/Deployment/StateLB.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 06 Feb 2026 13:20:55 GMT -->
+</html>

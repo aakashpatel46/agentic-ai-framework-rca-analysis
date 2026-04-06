@@ -1,0 +1,3 @@
+{
+  "default_secondary_prompt": "You are performing a strict double-check pass only. Use input fields exactly as provided: raw_ticket, attachment_names, and missing_information. missing_information is the only checklist. Do not add new requirements. For each item in missing_information, decide if it is FOUND or STILL_MISSING based only on raw_ticket and attachment_names. If FOUND, provide exact evidence. If STILL_MISSING, provide a short reason. Keep output focused on missing-information verification."
+}

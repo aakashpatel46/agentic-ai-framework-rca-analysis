@@ -1,0 +1,79 @@
+{
+  "agent": "agent3",
+  "generated_at_utc": "2026-03-23T18:11:06Z",
+  "input_ticket": {
+    "Issue key": "JMCH-DUMMY-3001",
+    "Summary": "POS terminal crashes during refund flow for guest checkout orders",
+    "Description": "Store reports intermittent crash while processing refunds for guest checkout transactions. Issue appears after selecting original receipt and submitting refund.",
+    "Priority": "High",
+    "Issue Type": "Bug",
+    "Components": [
+      "point-of-sale",
+      "refund-service"
+    ],
+    "Labels": [
+      "refund",
+      "guest-checkout",
+      "production"
+    ],
+    "Organizations": [
+      "Retail Ops"
+    ],
+    "Environment": "Production",
+    "Affects Version/s": [
+      "250.1"
+    ],
+    "Steps to Reproduce": [
+      "Open POS and search for a guest checkout receipt",
+      "Click refund and confirm amount",
+      "Observe crash after confirmation"
+    ],
+    "Error Message": "NullPointerException in refund handler",
+    "Comments": [
+      "Issue started after weekend deployment.",
+      "Does not reproduce for registered users."
+    ]
+  },
+  "query_context": {
+    "ticket_index_name": "jmch-jira-tickets",
+    "documentation_index_name": "jmch-documentation",
+    "namespace": "default",
+    "embedding_model": "text-embedding-3-small"
+  },
+  "similar_tickets_top3": [],
+  "documentation_related": [],
+  "detailed_analysis": {
+    "analysis_source": "fallback",
+    "executive_summary": "Initial RCA analysis for 'POS terminal crashes during refund flow for guest checkout orders'. The issue appears related to previously resolved patterns and should be triaged against similar incidents and matched documentation.",
+    "probable_root_causes": [
+      "Regression or configuration drift in a shared component touched by recent changes.",
+      "Unhandled edge case similar to historical incidents identified from ticket index.",
+      "Environment-specific mismatch (version/config/data state) causing inconsistent behavior."
+    ],
+    "recommended_diagnostics": [
+      "Reproduce the issue in a lower environment using ticket steps, then capture logs and stack trace.",
+      "Compare behavior with top similar tickets and verify whether the same component/version is involved.",
+      "Review recent code/config changes around components referenced in the current ticket."
+    ],
+    "immediate_actions": [
+      "Prioritize containment steps based on severity (feature flag, rollback, or scoped mitigation).",
+      "Confirm missing ticket fields (environment, repro steps, exact error signatures) before final RCA."
+    ],
+    "long_term_prevention": [
+      "Add targeted regression tests for the failing path and neighboring edge cases.",
+      "Improve ticket template enforcement for environment/error/steps-to-reproduce completeness.",
+      "Publish a runbook entry linking this issue pattern to validated mitigation steps."
+    ],
+    "confidence": "medium",
+    "supporting_signals": [],
+    "analysis_error": "LLM synthesis fallback used: Connection error."
+  },
+  "analysis_notes": [
+    "similar_tickets_top3 is deduplicated by issue key from chunked vectors",
+    "documentation index metadata currently returns file path/chunk pointers for follow-up review"
+  ],
+  "errors": [
+    "ticket_index_query_failed: Connection error.",
+    "documentation_index_query_failed: Connection error."
+  ]
+}

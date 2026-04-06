@@ -1,0 +1,77 @@
+{
+  "categories": {
+    "Gift card": [
+      "summary",
+      "description",
+      "Logs",
+      "Reproduction steps",
+      "Version"
+    ],
+    "Mall Certificate": [
+      "summary",
+      "description",
+      "Logs",
+      "Reproduction steps",
+      "Version"
+    ],
+    "Scanner": [
+      "summary",
+      "description",
+      "Logs",
+      "Reproduction steps",
+      "Version",
+      "Scanner configuration"
+    ],
+    "Returns": [
+      "summary",
+      "description",
+      "Logs",
+      "Reproduction steps",
+      "yml file",
+      "Version"
+    ],
+    "Payments": [
+      "summary",
+      "description",
+      "Logs",
+      "Reproduction steps",
+      "Version",
+      ""
+    ],
+    "Promotions": [
+      "summary",
+      "description",
+      "Version",
+      "prm_tables"
+    ],
+    "Sale": [
+      "summary",
+      "description",
+      "Logs",
+      "Reproduction steps",
+      "Version",
+      "itm_ tables"
+    ],
+    "UI": [
+      "summary",
+      "description",
+      "Images/Screenshots"
+    ],
+    "feature_request": [
+      "summary",
+      "description"
+    ],
+    "access_request": [
+      "summary",
+      "description"
+    ],
+    "Merge Request": [
+      "description",
+      "summary"
+    ],
+    "other": [
+      "summary",
+      "description"
+    ]
+  }
+}

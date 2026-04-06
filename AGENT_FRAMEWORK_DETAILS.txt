@@ -1,0 +1,357 @@
+AGENTIC FRAMEWORK MASTER NOTES
+=============================
+
+How to use this file
+--------------------
+- Keep one clearly separated section per agent.
+- Reuse the same subsection headers for every agent.
+- Add new agents by copying the "AGENT TEMPLATE" section at the end.
+
+
+AGENT 1
+=======
+
+1. Goal
+-------
+Build an independent agent that triggers when a new Jira ticket is created in a configured project/workspace.
+
+2. Status
+---------
+Implemented and tested.
+
+3. Source
+---------
+- Current source type: Jira
+- Source is pluggable via `EventSource` abstraction
+
+4. Files Created
+----------------
+- `agent1/models.py`
+- `agent1/source.py`
+- `agent1/jira_source.py`
+- `agent1/event_listener.py`
+- `agent1/agent1.py`
+- `agent1/test_jira_source.py`
+- `agent1/test_event_listener.py`
+- `agent1/README.md`
+- `agent1/__init__.py`
+
+4.1 File-by-File Description
+----------------------------
+- `agent1/models.py`
+  - Defines `TicketCreatedEvent` (normalized event schema).
+  - Keeps a source-neutral structure so business logic does not depend on Jira-specific objects.
+
+- `agent1/source.py`
+  - Defines abstract `EventSource` contract.
+  - Any new source adapter (Jira, ServiceNow, DB, etc.) should implement this interface.
+
+- `agent1/jira_source.py`
+  - Implements Jira adapter (`JiraSource`) and configuration model (`JiraConfig`).
+  - Connects to Jira using `jira` library.
+  - Builds JQL with project filter + optional extra filter.
+  - Fetches issues, parses timestamps, maps each issue into `TicketCreatedEvent`.
+  - Handles strict filtering so only events newer than checkpoint are returned.
+
+- `agent1/event_listener.py`
+  - Implements `CheckpointStore` to read/write last processed timestamp.
+  - Implements `EventListener` loop to:
+    - fetch events from source,
+    - call event handler for each event,
+    - update checkpoint after successful processing.
+  - Provides `build_checkpoint_store_from_env()` helper for configurable state file path.
+
+- `agent1/agent1.py`
+  - Runtime entrypoint (`python -m agent1.agent1`).
+  - Chooses source based on `AGENT1_SOURCE` (currently supports `jira`).
+  - Wires source + listener + handler and starts polling loop.
+  - Contains default handler that prints detected ticket details.
+
+- `agent1/test_jira_source.py`
+  - Unit tests for Jira adapter behavior.
+  - Verifies JQL/project filtering, event mapping, and strict new-event filtering logic.
+
+- `agent1/test_event_listener.py`
+  - Unit tests for listener/checkpoint behavior.
+  - Verifies event processing order, checkpoint persistence, and checkpoint reuse on restart.
+
+- `agent1/README.md`
+  - Quick start guide for environment variables, run command, and extension pattern.
+
+- `agent1/__init__.py`
+  - Marks `agent1` directory as a Python package.
+  - Enables imports like `from agent1.event_listener import EventListener`.
+
+5. Core Design
+--------------
+- `TicketCreatedEvent` is the normalized event model.
+- `EventSource` is the base interface for all external systems.
+- `JiraSource` implements `EventSource` and maps Jira issues to normalized events.
+- `EventListener` polls source, triggers handler, and persists checkpoint.
+- `CheckpointStore` prevents duplicate processing after restart.
+
+6. Runtime Flow
+---------------
+1. Start `python -m agent1.agent1`.
+2. Build source from env (`AGENT1_SOURCE`).
+3. Load checkpoint timestamp from state file.
+4. Poll source for new events.
+5. Trigger handler per event.
+6. Save latest processed timestamp.
+7. Sleep and repeat.
+
+7. Configuration (Env Vars)
+---------------------------
+Required:
+- `AGENT1_SOURCE=jira`
+- `JIRA_BASE_URL=https://<your-domain>.atlassian.net`
+- `JIRA_EMAIL=<jira-user-email>`
+- `JIRA_API_TOKEN=<jira-api-token>`
+- `JIRA_PROJECT_KEY=<project-key>`
+
+Optional:
+- `JIRA_JQL_EXTRA=<extra filter clause>`
+- `JIRA_PAGE_SIZE=100`
+- `AGENT1_POLL_INTERVAL=30`
+- `AGENT1_STATE_FILE=.agent_state/agent1_checkpoint.txt`
+
+
+9. Current Output Behavior
+--------------------------
+On new ticket detection, handler prints:
+`[agent1] New ticket detected: <KEY> (project=<PROJECT>) summary=<SUMMARY>`
+
+10. Tests
+---------
+- `agent1/test_event_listener.py`
+  - validates checkpoint load/save and event triggering
+- `agent1/test_jira_source.py`
+  - validates Jira mapping, JQL usage, strict newer-than filtering
+
+Run tests:
+`.\venv\Scripts\python -m unittest discover -s agent1 -t . -p "test_*.py"`
+It checks core behavior (listener/checkpoint + Jira source mapping/filtering).
+
+11. Known Gaps / Next Improvements
+----------------------------------
+- Add structured logging
+- Add retry/backoff for Jira failures
+- Add webhook mode (faster than polling)
+- Add dead-letter handling for failed processing
+- Expand normalized schema as needed
+
+
+AGENT 2
+=======
+
+1. Goal
+-------
+Validate and enrich a specific ticket using category-based rules.
+
+2. Status
+---------
+Implemented and tested.
+
+3. Source
+---------
+- Input from Agent1: `issue_key`
+- Current source type: Jira
+- Source is pluggable via `TicketSource` abstraction
+
+4. Files Created
+----------------
+- `agent2/models.py`
+- `agent2/source.py`
+- `agent2/jira_source.py`
+- `agent2/rules.py`
+- `agent2/rules.json`
+- `agent2/openai_categorizer.py`
+- `agent2/processor.py`
+- `agent2/agent2.py`
+- `agent2/env_loader.py`
+- `agent2/test_processor.py`
+- `agent2/README.md`
+- `agent2/__init__.py`
+
+4.1 File-by-File Description
+----------------------------
+- `agent2/models.py`
+  - Defines `RawTicket`, `AttachmentMeta`, and `ValidationEnrichmentResult`.
+  - Result includes raw ticket payload and downloaded attachment paths.
+
+- `agent2/source.py`
+  - Defines `TicketSource` interface for flexible source integrations.
+  - Requires `fetch_issue(issue_key)` and `download_attachments(...)`.
+
+- `agent2/jira_source.py`
+  - Jira adapter implementation of `TicketSource`.
+  - Fetches full issue details and downloads attachments.
+
+- `agent2/rules.py`
+  - Loads validation rules from JSON and provides requirements by category.
+
+- `agent2/rules.json`
+  - Initial category-to-required-information mapping.
+  - You can update this file with your own business rules.
+
+- `agent2/openai_categorizer.py`
+  - Uses OpenAI to classify ticket into one allowed category.
+  - Falls back to keyword-based categorization if `OPENAI_API_KEY` is not set.
+
+- `agent2/processor.py`
+  - Orchestrates end-to-end flow:
+    - fetch ticket
+    - download attachments
+    - categorize
+    - validate required info against available info
+    - produce final output object
+
+- `agent2/agent2.py`
+  - Agent2 entrypoint.
+  - Reads `.env`, accepts issue key, runs processor, writes output JSON.
+
+- `agent2/env_loader.py`
+  - Minimal `.env` loader for Agent2 isolation.
+
+- `agent2/test_processor.py`
+  - Unit test for validation/enrichment behavior.
+
+- `agent2/README.md`
+  - Quick run and behavior notes.
+
+- `agent2/__init__.py`
+  - Marks package for imports.
+
+5. Core Design
+--------------
+- Agent2 is isolated and runs independently.
+- Input contract: issue key (`--issue-key` or `AGENT2_INPUT_ISSUE_KEY`).
+- Output contract: JSON containing raw ticket details, category, required/missing info, and attachment file paths.
+
+6. Runtime Flow
+---------------
+1. Start `python -m agent2.agent2 --issue-key <KEY>`.
+2. Load `.env`.
+3. Build source (`AGENT2_SOURCE`, currently `jira`).
+4. Fetch full ticket for `<KEY>`.
+5. Download ticket attachments under `agent2/attachments/<KEY>/` (or configured path).
+6. Categorize using OpenAI.
+7. Apply rule requirements for selected category.
+8. Write output JSON to `agent2/output/<KEY>.json` (or configured output file).
+
+7. Configuration (Env Vars)
+---------------------------
+Required:
+- `AGENT2_SOURCE=jira`
+- `JIRA_BASE_URL`
+- `JIRA_EMAIL`
+- `JIRA_API_TOKEN`
+
+Required input:
+- `AGENT2_INPUT_ISSUE_KEY` or `--issue-key` CLI argument
+
+Optional:
+- `AGENT2_RULES_FILE=agent2/rules.json`
+- `AGENT2_ATTACHMENT_ROOT=agent2/attachments/<issue-key>`
+- `AGENT2_OUTPUT_FILE=agent2/output/<issue-key>.json`
+- `OPENAI_API_KEY=<key>`
+- `OPENAI_MODEL=gpt-4o-mini`
+
+8. Run Commands
+---------------
+PowerShell:
+
+`$env:AGENT2_SOURCE="jira"`
+`$env:AGENT2_INPUT_ISSUE_KEY="ABC-123"`
+`.\\venv\\Scripts\\python -m agent2.agent2`
+
+Or explicit key:
+
+`.\\venv\\Scripts\\python -m agent2.agent2 --issue-key ABC-123`
+
+9. Current Output Behavior
+--------------------------
+- Console summary:
+  - processed issue key
+  - output JSON path
+  - attachment count
+  - category
+  - missing information (if any)
+- Output artifact:
+  - `agent2/output/<issue-key>.json`
+
+10. Tests
+---------
+- `agent2/test_processor.py`
+  - validates category-based missing-information detection
+
+Run tests:
+`.\\venv\\Scripts\\python -m unittest discover -s agent2 -t . -p "test_*.py"`
+
+11. Known Gaps / Next Improvements
+----------------------------------
+- Add stronger text extraction for Jira rich-text descriptions
+- Add retry/backoff around attachment download and OpenAI calls
+- Add richer requirement matching rules (field aliases, semantic checks)
+- Add additional source adapters (non-Jira)
+
+
+GLOBAL GUIDELINES (ALL AGENTS)
+==============================
+
+- Each agent must be independently runnable.
+- Each agent should keep source adapters separate from business logic.
+- Shared patterns are allowed (listener, checkpointing), but agents should not be tightly coupled.
+- New source integrations should implement the same source contract style.
+- Prefer config-driven behavior (env/config file) over hardcoding.
+
+
+AGENT TEMPLATE (COPY FOR AGENT 2, AGENT 3, ...)
+================================================
+
+AGENT <N>
+=========
+
+1. Goal
+-------
+
+2. Status
+---------
+
+3. Source
+---------
+
+4. Files Created
+----------------
+
+4.1 File-by-File Description
+----------------------------
+
+5. Core Design
+--------------
+
+6. Runtime Flow
+---------------
+
+7. Configuration (Env Vars)
+---------------------------
+
+8. Run Commands
+---------------
+
+9. Current Output Behavior
+--------------------------
+
+10. Tests
+---------
+
+11. Known Gaps / Next Improvements
+----------------------------------
+
+
+FUTURE AGENT-SPECIFIC GUIDELINES
+================================
+
+Add your future instructions below:
+
+- 

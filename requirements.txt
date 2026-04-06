@@ -1,0 +1,11 @@
+# Core
+python-dotenv>=1.0.1,<2
+requests>=2.32.0,<3
+streamlit>=1.39.0,<2
+
+# Jira helpers
+jira>=3.8.0,<4
+
+# Embeddings + Vector DB
+openai>=1.40.0,<2
+pinecone>=5.0.0,<6
