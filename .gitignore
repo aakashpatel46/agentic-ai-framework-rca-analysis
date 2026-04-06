@@ -1,4 +1,4 @@
-# Python cache/bytecode
+﻿# Python cache/bytecode
 __pycache__/
 *.py[cod]
 *$py.class
@@ -44,14 +44,15 @@ htmlcov/
 
 # Project-generated outputs/state
 .agent_state/
-agent1/output/
-agent2/output/
-agent2/attachments/
-agent3/output/
-agent4/output/
-agent5/output/
+ticket_ingestion/output/
+validation_enrichment/output/
+validation_enrichment/attachments/
+multi_source_analysis/output/
+rca_synthesis/output/
+risk_reporting/output/
 framework/output/
 
-# Local documentation corpus / large docs data
-Helpers/files/knowlede_source/
+# Local documentation / large data
+Helpers/files/
 RCA_Agentic_Framework.pptx
+
